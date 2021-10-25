@@ -1,0 +1,97 @@
+html {
+  width: 100%;
+}
+body {
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 1440px;
+  width: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  list-style-type: none;
+  color: #901c1c;
+}
+
+/*header*/
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+}
+li {
+  border: #c4c4c4 0.5px solid;
+  border-radius: 0.9rem;
+  padding: 3px 10px;
+  margin: 3px;
+}
+
+h1 {
+  color: #901c1c;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+/*Main*/
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.photographers_card {
+  width: 263px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 72px 150px 50px;
+}
+.photographers_card img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  justify-content: center;
+}
+.photographers-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  color: #d3573c;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.city {
+  color: #901c1c;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.quote {
+  color: #000000;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.price {
+  color: #757575;
+  font-size: 9px;
+  font-weight: 400;
+}
