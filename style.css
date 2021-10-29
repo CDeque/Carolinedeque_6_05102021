@@ -57,7 +57,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px 72px 150px 50px;
+  margin: 50px 72px;
 }
 .photographers_card img {
   border-radius: 50%;

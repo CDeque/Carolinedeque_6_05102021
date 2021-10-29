@@ -10,9 +10,16 @@ fetch("photographers.json")
     const photographers = data.photographers;
 
     photographers.forEach(function (photographer) {
+      //console.log(photographers);
+      photographer.tags.forEach((tag) => {
+        const tagsArray = [];
+        tagsArray.push(tag);
+        console.log(tagsArray);
+      });
       new createPhotographerCard(photographer);
     });
   })
+
   .catch((err) => {
     return Error(err);
   });
@@ -21,9 +28,12 @@ class createPhotographerCard {
   constructor(data) {
     this.data = data;
     this.main = document.querySelector("main");
+    //this.nav = document.querySelector("nav");
+    //console.log(this.nav);
     this.createCard();
     this.addingClass();
     this.addingTextContent();
+    this.createTags();
     this.linkElements();
   }
   // Creation HTML
@@ -37,7 +47,7 @@ class createPhotographerCard {
     this.gps = document.createElement("p");
     this.tagline = document.createElement("p");
     this.price = document.createElement("p");
-    this.tags = document.createElement("ul");
+    this.tagContainer = document.createElement("ul");
   }
 
   //Ajout classes
@@ -50,7 +60,7 @@ class createPhotographerCard {
     this.gps.classList.add("location");
     this.tagline.classList.add("tagline");
     this.price.classList.add("price");
-    this.tags.classList.add("tags");
+    this.tagContainer.classList.add("tag_container");
   }
 
   // Ajout du contenu
@@ -66,7 +76,16 @@ class createPhotographerCard {
     this.gps.innerHTML = this.data.city + " , " + this.data.country;
     this.tagline.innerHTML = this.data.tagline;
     this.price.innerHTML = this.data.price + " €/jour";
-    this.tags.innerHTML = this.data.tags;
+  }
+  // Ajout des tags
+  createTags() {
+    this.tagAnchor = document.createElement("a");
+    this.tagAnchor.classList.add("tag_anchor");
+    this.tagList = document.createElement("li");
+    this.tagList.classList.add("tag");
+    this.span = document.createElement("span");
+    this.span.classList.add("span");
+    this.span.innerHTML = "#" + this.data.tags.join(" ");
   }
 
   linkElements() {
@@ -78,6 +97,11 @@ class createPhotographerCard {
     this.div.appendChild(this.gps);
     this.div.appendChild(this.tagline);
     this.div.appendChild(this.price);
-    this.div.appendChild(this.tags);
+    this.div.appendChild(this.tagContainer);
+    this.tagContainer.appendChild(this.tagAnchor);
+    this.tagAnchor.appendChild(this.tagList);
+    this.tagList.appendChild(this.span);
   }
 }
+
+//scroll
