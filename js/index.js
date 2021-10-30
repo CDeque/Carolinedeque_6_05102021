@@ -11,15 +11,10 @@ fetch("photographers.json")
 
     photographers.forEach(function (photographer) {
       //console.log(photographers);
-      photographer.tags.forEach((tag) => {
-        const tagsArray = [];
-        tagsArray.push(tag);
-        console.log(tagsArray);
-      });
+
       new createPhotographerCard(photographer);
     });
   })
-
   .catch((err) => {
     return Error(err);
   });
@@ -28,8 +23,6 @@ class createPhotographerCard {
   constructor(data) {
     this.data = data;
     this.main = document.querySelector("main");
-    //this.nav = document.querySelector("nav");
-    //console.log(this.nav);
     this.createCard();
     this.addingClass();
     this.addingTextContent();
@@ -73,7 +66,7 @@ class createPhotographerCard {
     this.photographerPortrait.tabIndex = "0";
     this.photographerPortrait.id = this.data.id;
     this.photographerName.innerHTML = this.data.name;
-    this.gps.innerHTML = this.data.city + " , " + this.data.country;
+    this.gps.innerHTML = this.data.city + ", " + this.data.country;
     this.tagline.innerHTML = this.data.tagline;
     this.price.innerHTML = this.data.price + " €/jour";
   }
@@ -81,11 +74,21 @@ class createPhotographerCard {
   createTags() {
     this.tagAnchor = document.createElement("a");
     this.tagAnchor.classList.add("tag_anchor");
-    this.tagList = document.createElement("li");
-    this.tagList.classList.add("tag");
-    this.span = document.createElement("span");
-    this.span.classList.add("span");
-    this.span.innerHTML = "#" + this.data.tags.join(" ");
+
+    this.data.tags.forEach((tag) => {
+      const tagsArray = [];
+
+      this.tagList = document.createElement("li");
+      this.tagList.classList.add("tag");
+      this.span = document.createElement("span");
+      this.tagList.innerHTML = "#" + tag;
+
+      this.tagAnchor.appendChild(this.tagList);
+      this.tagList.appendChild(this.span);
+
+      tagsArray.push(tag);
+      console.log(tagsArray);
+    });
   }
 
   linkElements() {
@@ -99,8 +102,6 @@ class createPhotographerCard {
     this.div.appendChild(this.price);
     this.div.appendChild(this.tagContainer);
     this.tagContainer.appendChild(this.tagAnchor);
-    this.tagAnchor.appendChild(this.tagList);
-    this.tagList.appendChild(this.span);
   }
 }
 
