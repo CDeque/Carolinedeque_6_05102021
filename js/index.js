@@ -27,6 +27,7 @@ class createPhotographerCard {
     this.addingClass();
     this.addingTextContent();
     this.createTags();
+
     this.linkElements();
   }
   // Creation HTML
@@ -74,6 +75,7 @@ class createPhotographerCard {
   createTags() {
     this.tagAnchor = document.createElement("a");
     this.tagAnchor.classList.add("tag_anchor");
+    this.tagAnchor.href = "#";
 
     this.data.tags.forEach((tag) => {
       const tagsArray = [];
@@ -87,7 +89,7 @@ class createPhotographerCard {
       this.tagList.appendChild(this.span);
 
       tagsArray.push(tag);
-      console.log(tagsArray);
+      //console.log(tagsArray);
     });
   }
 
@@ -104,5 +106,3 @@ class createPhotographerCard {
     this.tagContainer.appendChild(this.tagAnchor);
   }
 }
-
-//scroll

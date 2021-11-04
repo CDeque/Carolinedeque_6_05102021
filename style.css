@@ -23,21 +23,44 @@ header {
   align-items: center;
   justify-content: space-between;
 }
+
+.content {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 45.5%;
+  color: #000000;
+  background-color: #db8876;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  transition: ease-in 0.1s;
+}
 nav {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-ul {
+.nav_container,
+.tag_anchor {
   display: flex;
   flex-direction: row;
 }
-li {
+li,
+.tag {
   border: #c4c4c4 0.5px solid;
   border-radius: 0.9rem;
   padding: 3px 10px;
   margin: 3px;
+  cursor: pointer;
+}
+.active,
+li:hover {
+  background-color: #901c1c;
+  color: #fff;
 }
 
 h1 {
@@ -53,11 +76,11 @@ h1 {
   justify-content: space-between;
 }
 .photographers_card {
-  width: 263px;
+  width: 21%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px 72px;
+  margin: 50px;
 }
 .photographers_card img {
   border-radius: 50%;
@@ -66,7 +89,7 @@ h1 {
   object-fit: cover;
   justify-content: center;
 }
-.photographers-content {
+.photographers_content {
   display: flex;
   flex-direction: column;
   align-items: center;
