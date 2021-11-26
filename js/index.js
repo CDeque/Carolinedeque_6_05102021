@@ -8,26 +8,25 @@ fetch("photographers.json")
   })
   .then((data) => {
     const photographers = data.photographers;
+    photographers.forEach((photographer) => {
+      //console.log(photographer);
 
-    photographers.forEach(function (photographer) {
-      //console.log(photographers);
-
-      new createPhotographerCard(photographer);
+      new CreatePhotographerCard(photographer);
     });
   })
   .catch((err) => {
     return Error(err);
   });
 
-class createPhotographerCard {
+class CreatePhotographerCard {
   constructor(data) {
     this.data = data;
+    //console.log(this.data);
     this.main = document.querySelector("main");
     this.createCard();
     this.addingClass();
     this.addingTextContent();
     this.createTags();
-
     this.linkElements();
   }
   // Creation HTML
@@ -60,7 +59,7 @@ class createPhotographerCard {
   // Ajout du contenu
 
   addingTextContent() {
-    this.linkPhotographer.href = "#";
+    this.linkPhotographer.href = "photographers_page.html?id=" + this.data.id;
     this.photographerPortrait.src =
       "./medias/Photographers_ID_Photos/" + this.data.portrait;
     this.photographerPortrait.alt = this.data.name;
@@ -82,11 +81,10 @@ class createPhotographerCard {
 
       this.tagList = document.createElement("li");
       this.tagList.classList.add("tag");
-      this.span = document.createElement("span");
+      this.tagList.setAttribute("aria-label", tag);
       this.tagList.innerHTML = "#" + tag;
 
       this.tagAnchor.appendChild(this.tagList);
-      this.tagList.appendChild(this.span);
 
       tagsArray.push(tag);
       //console.log(tagsArray);

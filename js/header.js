@@ -44,11 +44,13 @@ function createHeaderNav() {
   tagsCategories.forEach((tag) => {
     const navTagLink = document.createElement("a");
     navTagLink.classList.add("nav_tag_link");
-    navTagLink.href = "#";
+    navTagLink.href = "#" + tag;
 
     const navTags = document.createElement("li");
-
-    navTags.innerHTML = "#" + tag;
+    navTags.classList.add("tag");
+    navTags.setAttribute("aria-label", tag);
+    navTags.innerHTML =
+      "#" + tag.charAt(0).toUpperCase() + tag.substring(1).toLowerCase();
 
     nav.appendChild(navContainer);
     navContainer.appendChild(navTagLink);
@@ -58,16 +60,3 @@ function createHeaderNav() {
 createHeaderNav();
 
 //-----------------------------------------------------------------
-// Function Affichage des photographes en fonction des tags cliqués
-
-let selectNavTags = document.querySelectorAll("li");
-console.log(selectNavTags);
-
-selectNavTags.forEach((navTag) => {
-  navTag.addEventListener("click", function () {
-    selectNavTags.forEach((element) => element.classList.remove("active"));
-    this.classList.add("active");
-
-    console.log("click");
-  });
-});

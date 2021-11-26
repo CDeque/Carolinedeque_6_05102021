@@ -1,0 +1,130 @@
+html {
+  width: 100%;
+}
+
+body {
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  max-width: 1440px;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  list-style-type: none;
+  color: #901c1c;
+}
+
+/*header*/
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  display: none;
+  position: fixed;
+  top: 10px;
+  left: 45.5%;
+  color: #000000;
+  background-color: #db8876;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  transition: ease-in 0.1s;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_container,
+.tag_anchor {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag {
+  border: #c4c4c4 0.5px solid;
+  border-radius: 0.9rem;
+  padding: 3px 10px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.active,
+.tag:hover {
+  background-color: #901c1c;
+  color: #fff;
+}
+
+h1 {
+  color: #901c1c;
+  font-size: 36px;
+  font-weight: 400;
+}
+
+/*Main*/
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.photographers_card {
+  width: 21%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+}
+
+.photographers_card img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  justify-content: center;
+}
+
+.photographers_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  color: #d3573c;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.city {
+  color: #901c1c;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.quote {
+  color: #000000;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.price {
+  color: #757575;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+/*# sourceMappingURL=style.css.map */

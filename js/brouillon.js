@@ -1,69 +1,91 @@
-// selectionner main et ajouter une section
-const main = document.querySelector("main");
-const section = document.createElement("section");
-main.appendChild(section);
-
-let photographersData = []; //tab photographers
-const fetchPhotographers = async () => {
-  await fetch("photographers.json")
-    .then((response) => response.json())
-    .then((data) => (photographersData = data.photographers));
-  //console.log(photographersData);
-
-  photographersData.forEach(function (photographerData) {
-    //console.log(photographer);
-
-    class Photographersdisplay {
-      constructor(name, id, city, country, tags, tagline, price, portrait) {
-        this.name = name;
-        this.id = id;
-        this.city = city;
-        this.country = country;
-        this.tags = tags;
-        this.tagline = tagline;
-        this.price = price;
-        this.portrait = portrait;
-      }
-
-      // Creation HTML
-
-      createCard() {
-        const article = document.createElement("article");
-        section.appendChild(article);
-        article.classList.add("photographers_card");
-        const link = document.createElement("a");
-        link.classList.add("photographer_id");
-        article.appendChild(link);
-        const photographerPortrait = document.createElement("img");
-        photographerPortrait.classList.add("photo_id");
-        link.appendChild(photographerPortrait);
-        const photographersName = document.createElement("h2");
-        photographersName.classList.add("name");
-        link.appendChild(photographersName);
-        const location = document.createElement("p");
-        link.appendChild(location);
-        location.classList.add("location");
-        const tagline = document.createElement("p");
-        link.appendChild(tagline);
-        tagline.classList.add("tagline");
-        const price = document.createElement("p");
-        link.appendChild(price);
-        price.classList.add("price");
-
-        // link class & data
-
-        photographerPortrait.src =
-          "/medias/Photographers_ID " + this.id + "/" + this.portrait;
-        photographerPortrait.alt = this.name;
-        photographersName.innerHTML = this.name;
-        location.innerHTML = this.city + "," + this.country;
-        tagline.innerHTMl = this.tagline;
-        price.innerHTML = this.price + " €/jour";
-      }
+class Tag {
+  constructor(tagEvent, tabCardsFilter) {
+    this.tag = tagEvent;
+    this.tagAriaLabel = this.tag.attributes["aria-label"].value;
+    this.allSameTags = document.querySelectorAll(
+      ".btnTags[aria-label=" + this.tagAriaLabel + "]"
+    );
+    this.photographCards =
+      document.querySelector("#photographsList").childNodes;
+    this.tabCardsFilter = tabCardsFilter;
+    this.deleteCardsPhotograph();
+    this.activeOrDesactiveTags();
+    this.displayOrHidePhotographsCards();
+  }
+  //masque les cards des photographes
+  deleteCardsPhotograph() {
+    for (let photographCard of this.photographCards) {
+      photographCard.style.display = "none";
+    }
+  }
+  //affiche ou retire la class active sur les tags
+  //et ajoute ou retire les cards du tableau "tabCardsFilter"
+  activeOrDesactiveTags() {
+    for (let tag of this.allSameTags) {
+      tag.classList.toggle("active");
     }
 
-    const displayPhotographer = new Photographersdisplay(photographer);
-    displayPhotographer.createCard();
-  });
-};
-fetchPhotographers();
+    if (this.tag.classList.contains("active")) {
+      this.allSameTags.forEach((tag) => {
+        let cardOfTag = tag.parentNode.parentNode.parentNode;
+        this.tabCardsFilter.push(cardOfTag);
+      });
+    } else {
+      this.tag.blur();
+      this.allSameTags.forEach((tag) => {
+        let cardOfTag = tag.parentNode.parentNode.parentNode;
+        this.tabCardsFilter.splice(this.tabCardsFilter.indexOf(cardOfTag), 1);
+      });
+    }
+  }
+  //affiche ou masque les cards des photographes en fonction du tableau tabCardsFilter
+  displayOrHidePhotographsCards() {
+    if (this.tabCardsFilter.length === 0) {
+      for (let photographCard of this.photographCards) {
+        photographCard.style.display = "flex";
+      }
+    } else {
+      for (let el of this.tabCardsFilter) {
+        el.style.display = "flex";
+      }
+    }
+  }
+}
+
+//regex pour vérifier si l'url contient un parametre tag
+let regTag = /\?tag=/i;
+
+// fonctionnalité des tags.
+setTimeout(() => {
+  //si l'url n'a pas de parametres alors les tags fonctionnent normalement
+  if (window.location.search == "") {
+    let tagsAll = document.querySelectorAll(".btnTags");
+    let tabCardsFilter = [];
+    for (let index = 0; index < tagsAll.length; index++) {
+      let tag = tagsAll[index];
+      // Au click d'un tag j'affiche les photographes ayant ce même tag
+      tag.addEventListener("click", (e) => {
+        let tagEvent = e.target;
+        new Tag(tagEvent, tabCardsFilter);
+      });
+      tag.addEventListener("keyup", (e) => {
+        let tagEvent = e.target;
+        if (e.key == "Enter") {
+          new Tag(tagEvent, tabCardsFilter);
+        }
+      });
+    }
+
+    //sinon si l'url contient un parametre tag alors j'affiche les cards contenant le meme tag
+  } else if (regTag.test(window.location.search)) {
+    let tagAriaLabel = window.location.search.replace(/\?tag=/i, ""); //valeur de tag
+    let tabCardsFilter = [];
+    let tag = document.querySelector(
+      '.btnTags[aria-label="' + tagAriaLabel + '"]'
+    );
+    new Tag(tag, tabCardsFilter);
+  }
+}, 300);
+
+//----------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
