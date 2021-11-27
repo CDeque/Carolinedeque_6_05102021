@@ -7,8 +7,77 @@ body {
   margin: 0 auto;
   max-width: 1440px;
   width: 100%;
+  padding-top: 30px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/**** main ****/
+.photographer_profile {
+  background-color: #fafafa;
+  border-radius: 5px;
+  padding: 2rem;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.profile_container {
+  padding: 0rem;
+  display: flex;
+  flex-direction: column;
+}
+.name_profile {
+  font-weight: 400;
+  font-size: 64px;
+  color: $secondary;
+  margin: 0;
+}
+
+.location_profile {
+  font-size: 24px;
+  font-weight: 400;
+  color: $primary;
+}
+
+.tagline_profile {
+  font-size: 18px;
+  font-weight: 400;
+  color: $terciary;
+}
+.tags_container_profile {
+  padding: 0;
+}
+.profile_tag {
+  border: #c4c4c4 0.5px solid;
+  border-radius: 0.9rem;
+  padding: 3px 7px;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.photo_id_profile {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-right: 30px;
+  object-fit: cover;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+button {
+  width: 170px;
+  height: 69px;
+  border-radius: 5px;
+  background-color: $primary;
+  color: $white;
+  font-weight: 700;
+  font-size: 20px;
+  border: none;
+  margin: 1rem;
+  position: relative;
+  right: 300px;
+  top: -100px;
 }
