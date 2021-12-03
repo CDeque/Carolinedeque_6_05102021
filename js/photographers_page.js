@@ -20,7 +20,7 @@ fetch("photographers.json")
     return Error(err);
   });
 
-class CreatePhotographerPage {
+export class CreatePhotographerPage {
   constructor(data) {
     this.data = data;
     //console.log(this.data);
@@ -42,7 +42,7 @@ class CreatePhotographerPage {
     this.city = document.createElement("p");
     this.tagline = document.createElement("p");
     this.tagsContainer = document.createElement("ul");
-    this.contactBtn = document.createElement("button");
+    this.contactBtn = document.querySelector("button");
     this.photographerPortrait = document.createElement("img");
   }
 
@@ -55,7 +55,7 @@ class CreatePhotographerPage {
     this.city.classList.add("location_profile");
     this.tagline.classList.add("tagline_profile");
     this.tagsContainer.classList.add("tags_container_profile");
-    this.contactBtn.classList.add("contact_button");
+    this.contactBtn.classList.add("contact_btn");
     this.photographerPortrait.classList.add("photo_id_profile");
   }
 

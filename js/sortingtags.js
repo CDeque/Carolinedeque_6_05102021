@@ -5,7 +5,7 @@ fetch("photographers.json")
     }
   })
   .then((data) => {
-    console.log(data);
+    return data;
   })
   .catch((err) => {
     return Error(err);
@@ -77,7 +77,7 @@ setTimeout(() => {
     let filtersArray = [];
     for (let index = 0; index < tagsAll.length; index++) {
       let tag = tagsAll[index];
-      console.log(tag);
+      //console.log(tag);
 
       tag.addEventListener("click", (e) => {
         let tagEvent = e.target;
@@ -86,7 +86,7 @@ setTimeout(() => {
       });
     }
   } else if (regTag.test(window.location.search)) {
-    console.log(regTag.test(window.location.search));
+    //console.log(regTag.test(window.location.search));
     let tagAriaLabel = window.location.search.replace(/\?tag=/i, "");
 
     let filtersArray = [];
