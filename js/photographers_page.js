@@ -20,7 +20,7 @@ fetch("photographers.json")
     return Error(err);
   });
 
-export class CreatePhotographerPage {
+class CreatePhotographerPage {
   constructor(data) {
     this.data = data;
     //console.log(this.data);
@@ -36,6 +36,7 @@ export class CreatePhotographerPage {
   // creation du HTML
   createPhotographerCard() {
     this.section = document.createElement("section");
+    this.section2 = document.createElement("section");
     this.article = document.createElement("article");
     this.div = document.createElement("div");
     this.photographerName = document.createElement("h1");
@@ -48,7 +49,8 @@ export class CreatePhotographerPage {
 
   //Ajout des classes
   addingClass() {
-    this.section.classList.add("section");
+    this.section.classList.add("profile_container");
+    this.section2.classList.add("container");
     this.article.classList.add("photographer_profile");
     this.div.classList.add("profile_container");
     this.photographerName.classList.add("name_profile");
@@ -75,19 +77,24 @@ export class CreatePhotographerPage {
 
   // Ajout des tags
   createTags() {
-    this.tagAnchor = document.createElement("a");
-    this.tagAnchor.classList.add("tag_anchor");
-    this.tagAnchor.href = "#";
+    this.tagList = document.createElement("li");
+    this.tagList.classList.add("tag_list");
 
+    // je cree les differents tags sur le profil photographe
     this.data.tags.forEach((tag) => {
       const tagsArray = [];
 
-      this.tagList = document.createElement("li");
-      this.tagList.classList.add("profile_tag");
-      this.tagList.setAttribute("aria-label", tag);
-      this.tagList.innerHTML = "#" + tag;
+      this.tagAnchor = document.createElement("a");
+      this.tagAnchor.classList.add("profile_tag");
+      this.tagAnchor.setAttribute("aria-label", tag);
+      this.tagAnchor.innerHTML = "#" + tag;
 
-      this.tagAnchor.appendChild(this.tagList);
+      // lorsque l'on clique sur le tag d'un profil photographe,
+      // on renvoit vers la page d'accueil et on filtre les photographes en fonction de leurs tags,
+      //en ajoutant tag= + le tag .
+
+      this.tagAnchor.href = "index.html?tag=" + tag;
+      this.tagList.appendChild(this.tagAnchor);
 
       tagsArray.push(tag);
       //console.log(tagsArray);
@@ -98,12 +105,13 @@ export class CreatePhotographerPage {
   linkElements() {
     this.main.appendChild(this.section);
     this.section.appendChild(this.article);
+    this.main.appendChild(this.section2);
     this.article.appendChild(this.div);
     this.div.appendChild(this.photographerName);
     this.div.appendChild(this.city);
     this.div.appendChild(this.tagline);
     this.div.appendChild(this.tagsContainer);
-    this.tagsContainer.appendChild(this.tagAnchor);
+    this.tagsContainer.appendChild(this.tagList);
     this.article.appendChild(this.contactBtn);
     this.article.appendChild(this.photographerPortrait);
   }

@@ -55,7 +55,8 @@ nav {
   flex-direction: row;
 }
 
-.tag {
+.tag,
+.profile_tag {
   border: #c4c4c4 0.5px solid;
   border-radius: 0.9rem;
   padding: 3px 10px;
@@ -64,7 +65,8 @@ nav {
 }
 
 .active,
-.tag:hover {
+.tag:hover,
+.profile_tag:hover {
   background-color: $primary;
   color: $white;
 }
@@ -88,6 +90,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 50px;
 }
 
@@ -106,28 +109,40 @@ h1 {
   align-items: center;
 }
 
-h2 {
+.name {
   color: $secondary;
   font-weight: 400;
   font-size: 36px;
+  margin: 0px;
 }
 
-.city {
+.location {
   color: $primary;
   font-size: 13px;
   font-weight: 400;
+  margin: 0px;
 }
 
 .quote {
   color: $black;
   font-size: 10px;
   font-weight: 400;
+  margin: 5px 0px;
 }
-
+.tagline {
+  margin: 5px 0px;
+}
 .price {
   color: #757575;
   font-size: 9px;
   font-weight: 400;
+  margin: 5px 0px;
+}
+.tag_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
 }
 
 /*# sourceMappingURL=style.css.map */

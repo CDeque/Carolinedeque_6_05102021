@@ -52,10 +52,7 @@ label {
 
 input {
   font-size: 24px;
-
-  &:focus {
-    outline: none;
-  }
+  outline: none;
 }
 .user_lastName,
 .user_firstName,
