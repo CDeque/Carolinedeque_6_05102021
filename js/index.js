@@ -10,7 +10,6 @@ fetch("photographers.json")
     const photographers = data.photographers;
     photographers.forEach((photographer) => {
       //console.log(photographer);
-
       new CreatePhotographerCard(photographer);
     });
   })

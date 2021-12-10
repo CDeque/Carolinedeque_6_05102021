@@ -85,8 +85,8 @@ class Form {
     this.inputMessage.classList.add("user_message");
     this.errorMessage.classList.add("error");
     this.submitBtn.classList.add("submit_btn");
-    console.log(this.submitBtn);
   }
+
   addingContent() {
     this.formTitle.innerHTML = "Contactez-moi " + this.data.name;
     this.closeBtn.src = "medias/icones/close_button.png";
@@ -113,6 +113,7 @@ class Form {
     this.inputEmail.setAttribute("name", "email");
     this.inputMessage.setAttribute("id", "message");
     this.inputMessage.setAttribute("type", "text");
+    this.inputMessage.setAttribute("rows", 5);
     this.inputMessage.setAttribute("name", "message");
     this.errorName.setAttribute("id", "error_last");
     this.errorFirstName.setAttribute("id", "error_first");
@@ -147,9 +148,9 @@ class Form {
     this.form.appendChild(this.submitBtn);
   }
 
-  //-------------------------------------------------------------------
-  // ----------------- fonctionnement du formulaire -----------------//
-  //-------------------------------------------------------------------
+  //--------------------------------------------------------------------//
+  //------------------- fonctionnement du formulaire -------------------//
+  //--------------------------------------------------------------------//
 
   // ouvre la modale lorsque l'on clique sur le bouton contactez-moi
   openModal() {
@@ -171,19 +172,19 @@ class Form {
     });
   }
 
-  //-------------------------------------------------------------------
-  // validation du formulaire
-  //-------------------------------------------------------------------
+  //--------------------------------------------------------------//
+  //-------------------validation du formulaire-------------------//
+  //--------------------------------------------------------------//
 
   validateForm() {
     const form = document.querySelector("form");
-    console.log(form);
+    //console.log(form);
 
     const inputs = document.querySelectorAll("input");
 
-    //-------------------------------------------------------------------
-    // Regex
-    //-------------------------------------------------------------------
+    //--------------------------------------------------------------//
+    //---------------------------- Regex----------------------------//
+    //--------------------------------------------------------------//
 
     let checkLast = /^[a-zA-Z-]*$/;
     let checkFirst = /^[a-zA-Z-]*$/;
@@ -191,9 +192,9 @@ class Form {
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     let checkMessage = /^[a-zA-Z-]*$/;
 
-    //-------------------------------------------------------------------
-    // fonctions last, first, mail & message
-    //-------------------------------------------------------------------
+    //--------------------------------------------------------------//
+    //------------ fonctions last, first, mail & message -----------//
+    //--------------------------------------------------------------//
     function validationLast() {
       let last = form.elements["last"];
       let error = document.getElementById("error_last");
@@ -285,9 +286,9 @@ class Form {
       });
     });
 
-    //-------------------------------------------------------------------
-    //validation form
-    //-------------------------------------------------------------------
+    //--------------------------------------------------------------//
+    //----------------------- validation form ----------------------//
+    //--------------------------------------------------------------//
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (validationLast() === false) {
