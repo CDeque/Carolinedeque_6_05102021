@@ -186,11 +186,9 @@ class Form {
     //---------------------------- Regex----------------------------//
     //--------------------------------------------------------------//
 
-    let checkLast = /^[a-zA-Z-]*$/;
-    let checkFirst = /^[a-zA-Z-]*$/;
+    let strings = /^[a-zA-Z-]*$/;
     let checkMail =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    let checkMessage = /^[a-zA-Z-]*$/;
 
     //--------------------------------------------------------------//
     //------------ fonctions last, first, mail & message -----------//
@@ -198,7 +196,7 @@ class Form {
     function validationLast() {
       let last = form.elements["last"];
       let error = document.getElementById("error_last");
-      if (checkLast.test(last.value) === false || last.value.length <= 1) {
+      if (strings.test(last.value) === false || last.value.length <= 1) {
         last.classList.add("input-error");
         last.classList.remove("input-validate");
         error.innerText = "Veuillez entrer 2 caractères pour le nom. ";
@@ -214,7 +212,7 @@ class Form {
     function validationFirst() {
       let first = form.elements["first"];
       let error = document.getElementById("error_first");
-      if (checkFirst.test(first.value) === false || first.value.length <= 1) {
+      if (strings.test(first.value) === false || first.value.length <= 1) {
         first.classList.add("input-error");
         first.classList.remove("input-validate");
         error.innerText = "Veuillez entrer 2 caractères pour le prénom. ";
@@ -248,10 +246,7 @@ class Form {
     function validationMessage() {
       let message = form.elements["message"];
       let error = document.getElementById("error_message");
-      if (
-        checkMessage.test(message.value) === false ||
-        message.value.length <= 1
-      ) {
+      if (strings.test(message.value) === false || message.value.length <= 1) {
         message.classList.add("input-error");
         message.classList.remove("input-validate");
         error.innerText = "Veuillez entrer un message. ";
@@ -300,21 +295,14 @@ class Form {
       } else if (validationMessage() === false) {
         return false;
       } else {
-        form.remove();
-        this.formHeader.remove();
+        //remet a zero le form
+        form.reset();
 
-        let validate = document.querySelector(".content_form");
-        let message = document.querySelector("p");
-        message.classList.add("validationText");
-        message.textContent = "Merci! Votre message a été enregistré";
-        validate.appendChild(message);
-        let btnCloseValidation = document.createElement("button");
-        btnCloseValidation.classList.add("btn_validation");
-        btnCloseValidation.textContent = "Fermer";
-        btnCloseValidation.addEventListener("click", () => {
-          this.contactModal.style.display = "none";
-        }); // pour fermer le bouton
-        validate.appendChild(btnCloseValidation);
+        // ajout du message de validation
+        let validationMessage = document.createElement("span");
+        validationMessage.classList.add("validationText");
+        validationMessage.textContent = "Votre message a été enregistré";
+        this.form.appendChild(validationMessage);
       }
     });
   }
