@@ -15,9 +15,10 @@
 
 .contact_btn {
   margin: 1rem;
-  position: relative;
-  right: 200px;
-  top: -100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
   cursor: pointer;
 
   &:hover {
@@ -34,4 +35,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.lightbox_close_button {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+  z-index: 12;
+}
+
+.previous {
+  position: fixed;
+  top: 50%;
+  left: 10%;
+  z-index: 11;
+}
+
+.next {
+  position: fixed;
+  top: 50%;
+  right: 10%;
+}
+.lightbox button {
+  cursor: pointer;
 }

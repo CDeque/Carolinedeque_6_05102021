@@ -25,14 +25,16 @@ class CreatePhotographerMedia {
     this.data = data;
     //console.log(this.data);
 
+    this.main = document.querySelector("main");
     this.section = document.querySelector(".container");
 
     this.createGalleryElements();
     this.addingClass();
+    this.addingContent();
     this.createPhotoGallery();
     this.createVideo();
-    this.addingContent();
     this.linkElements();
+    this.incrementLikes();
   }
 
   // Création des Eléments
@@ -43,6 +45,7 @@ class CreatePhotographerMedia {
     this.titleContainer = document.createElement("div");
     this.likesContainer = document.createElement("div");
     this.likesNumber = document.createElement("p");
+    this.btnIcon = document.createElement("button");
     this.heartIcon = document.createElement("img");
   }
 
@@ -54,7 +57,14 @@ class CreatePhotographerMedia {
     this.titleContainer.classList.add("title_container");
     this.likesContainer.classList.add("likes_container");
     this.likesNumber.classList.add("likes_number");
+    this.likesNumber.setAttribute("id", "likes");
     this.heartIcon.classList.add("heart_icon");
+    this.heartIcon.setAttribute("id", "heart");
+  }
+  // Ajout du contenu
+  addingContent() {
+    this.likesNumber.innerHTML = this.data.likes;
+    this.heartIcon.src = "medias/icones/heart_icon.png";
   }
 
   // Création de la gallerie photo
@@ -62,6 +72,9 @@ class CreatePhotographerMedia {
     //utilisation  de la methode in pour aller récupérer les images et la vidéo dans le JSON
 
     if ("image" in this.data) {
+      this.a = document.createElement("a");
+      this.a.href =
+        "./medias/" + this.data.photographerId + "/" + this.data.image;
       this.image = document.createElement("img");
       this.image.classList.add("photo");
       this.image.src =
@@ -70,12 +83,14 @@ class CreatePhotographerMedia {
       this.title.classList.add("photo_title");
       this.title.innerHTML = this.data.title;
 
-      this.divMedia.appendChild(this.image);
+      this.divMedia.appendChild(this.a);
+      this.a.appendChild(this.image);
       this.divText.appendChild(this.titleContainer);
       this.titleContainer.appendChild(this.title);
       this.divText.appendChild(this.likesContainer);
       this.likesContainer.appendChild(this.likesNumber);
-      this.likesContainer.appendChild(this.heartIcon);
+      this.likesContainer.appendChild(this.btnIcon);
+      this.btnIcon.appendChild(this.heartIcon);
     }
   }
   // Création de la vidéo
@@ -88,18 +103,15 @@ class CreatePhotographerMedia {
       this.title = document.createElement("h3");
       this.title.classList.add("video_title");
       this.title.innerHTML = this.data.title;
+
       this.divMedia.appendChild(this.video);
       this.divText.appendChild(this.titleContainer);
       this.titleContainer.appendChild(this.title);
       this.divText.appendChild(this.likesContainer);
       this.likesContainer.appendChild(this.likesNumber);
-      this.likesContainer.appendChild(this.heartIcon);
+      this.likesContainer.appendChild(this.btnIcon);
+      this.btnIcon.appendChild(this.heartIcon);
     }
-  }
-  // Ajout du contenu
-  addingContent() {
-    this.likesNumber.innerHTML = this.data.likes;
-    this.heartIcon.src = "./medias/icones/heart_icon.png";
   }
 
   // Lier les éléments
@@ -107,5 +119,38 @@ class CreatePhotographerMedia {
     this.section.appendChild(this.article);
     this.article.appendChild(this.divMedia);
     this.article.appendChild(this.divText);
+  }
+
+  //incrementer les likes
+  incrementLikes() {
+    //On récuperer la classe des coeurs
+    let heartsBtn = this.likesNumber.nextElementSibling.childNodes;
+
+    //console.log(heartsBtn);
+
+    heartsBtn.forEach((heart) => {
+      heart.addEventListener("click", () => {
+        //si le coeur est cliqué on ajoute la classe "liked"
+        heart.classList.toggle("liked");
+
+        // on recupere les nb de like
+        let likesNumber = this.likesNumber.innerHTML;
+        //console.log(likesNumber);
+
+        // On ajoute une condition afin d'ajouter +1 au coeur contenant la classe "liked" au clic
+        //et une condition afin de retirer le like lorsque le clic a nouveau sur le coeur
+
+        if (heart.classList.contains("liked")) {
+          let number = parseInt(likesNumber) + 1;
+          this.likesNumber.innerHTML = number;
+          //console.log(number);
+        }
+        if (!heart.classList.contains("liked")) {
+          let number = parseInt(likesNumber) - 1;
+          this.likesNumber.innerHTML = number;
+          //console.log(number);
+        }
+      });
+    });
   }
 }
