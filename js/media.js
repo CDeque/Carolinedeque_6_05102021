@@ -35,6 +35,7 @@ class CreatePhotographerMedia {
     this.createVideo();
     this.linkElements();
     this.incrementLikes();
+    this.totalLikes();
   }
 
   // Création des Eléments
@@ -72,19 +73,16 @@ class CreatePhotographerMedia {
     //utilisation  de la methode in pour aller récupérer les images et la vidéo dans le JSON
 
     if ("image" in this.data) {
-      this.a = document.createElement("a");
-      this.a.href =
-        "./medias/" + this.data.photographerId + "/" + this.data.image;
       this.image = document.createElement("img");
       this.image.classList.add("photo");
       this.image.src =
         "./medias/" + this.data.photographerId + "/" + this.data.image;
+      this.image.setAttribute("id", this.data.id);
       this.title = document.createElement("h3");
       this.title.classList.add("photo_title");
       this.title.innerHTML = this.data.title;
 
-      this.divMedia.appendChild(this.a);
-      this.a.appendChild(this.image);
+      this.divMedia.appendChild(this.image);
       this.divText.appendChild(this.titleContainer);
       this.titleContainer.appendChild(this.title);
       this.divText.appendChild(this.likesContainer);
@@ -100,6 +98,7 @@ class CreatePhotographerMedia {
       this.video.classList.add("video");
       this.video.src =
         "./medias/" + this.data.photographerId + "/" + this.data.video;
+      this.video.setAttribute("id", this.data.id);
       this.title = document.createElement("h3");
       this.title.classList.add("video_title");
       this.title.innerHTML = this.data.title;
@@ -144,13 +143,21 @@ class CreatePhotographerMedia {
           let number = parseInt(likesNumber) + 1;
           this.likesNumber.innerHTML = number;
           //console.log(number);
-        }
-        if (!heart.classList.contains("liked")) {
-          let number = parseInt(likesNumber) - 1;
-          this.likesNumber.innerHTML = number;
-          //console.log(number);
+          this.totalLikesNumbers.innerHTML++; // +1 au sticker de likes
         }
       });
     });
+  }
+  totalLikes() {
+    this.totalLikes = 0;
+    this.numbers = document.querySelectorAll("#likes");
+    //console.log(numbers);
+    this.numbers.forEach((number) => {
+      let likesNumber = parseInt(number.innerHTML);
+      this.totalLikes += likesNumber;
+    });
+
+    this.totalLikesNumbers = document.querySelector(".total_likes");
+    this.totalLikesNumbers.innerHTML = this.totalLikes;
   }
 }
