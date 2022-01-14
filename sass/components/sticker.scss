@@ -1,0 +1,27 @@
+/**** Propriètés du sticker ****/
+.sticker_container {
+  position: fixed;
+  bottom: -15px;
+  text-align: center;
+  right: 11%;
+}
+
+.footer_sticker {
+  width: 376px;
+  height: 89px;
+  border-radius: 10px 10px 0 0;
+  background-color: $form;
+  display: flex;
+  justify-content: space-around;
+}
+.total_likes {
+  font-size: 24px;
+  font-weight: 500;
+}
+.heart {
+  height: 18px;
+}
+.photographers_price {
+  font-size: 24px;
+  font-weight: 500;
+}
