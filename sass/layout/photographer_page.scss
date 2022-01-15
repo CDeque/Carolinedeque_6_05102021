@@ -15,6 +15,7 @@ body {
 }
 
 /**** main ****/
+
 .photographer_profile {
   background-color: #fafafa;
   border-radius: 5px;
@@ -97,8 +98,7 @@ body {
   width: 80%;
 }
 
-.photo,
-.video {
+.media {
   width: 350px;
   height: 300px;
   border-radius: 5px;
@@ -108,8 +108,7 @@ body {
 
 /**** propriètés du legendes photos & video ****/
 
-.photo_title,
-.video_title {
+.media_title {
   color: $primary;
   font-size: 24px;
   font-weight: 400;

@@ -31,6 +31,7 @@ class CreatePhotographerPage {
     this.addingClass();
     this.addingTextContent();
     this.createTags();
+    this.createFooterPageSticker();
     this.linkElements();
   }
   // creation du HTML
@@ -99,6 +100,34 @@ class CreatePhotographerPage {
       tagsArray.push(tag);
       //console.log(tagsArray);
     });
+  }
+
+  createFooterPageSticker() {
+    //structure du sticker
+    this.footer = document.querySelector("footer");
+    this.stickerContainer = document.createElement("div");
+    this.footerSticker = document.createElement("div");
+    this.likesContainer = document.createElement("div");
+    this.totalLikes = document.createElement("p");
+    this.photographersPrice = document.createElement("p");
+    this.stickerHeart = document.createElement("img");
+    this.stickerContainer.classList.add("sticker_container");
+    this.footerSticker.classList.add("footer_sticker");
+    this.likesContainer.classList.add("likes_container");
+    this.totalLikes.classList.add("total_likes");
+    this.photographersPrice.classList.add("photographers_price");
+    this.stickerHeart.classList.add("heart");
+    this.totalLikes.innerHTML = "";
+    this.stickerHeart.src = "medias/icones/heart_icon.png";
+    this.stickerHeart.setAttribute("aria-label", "icone like");
+    this.photographersPrice.innerHTML = this.data.price + "€/jour";
+
+    this.footer.appendChild(this.stickerContainer);
+    this.stickerContainer.appendChild(this.footerSticker);
+    this.footerSticker.appendChild(this.likesContainer);
+    this.likesContainer.appendChild(this.totalLikes);
+    this.likesContainer.appendChild(this.stickerHeart);
+    this.footerSticker.appendChild(this.photographersPrice);
   }
 
   //Lier les éléments
