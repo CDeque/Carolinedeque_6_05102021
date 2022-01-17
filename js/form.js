@@ -37,6 +37,8 @@ class Form {
     this.validateForm();
   }
 
+  // Creation de la modale contact
+
   createContactModal() {
     this.contactModal = document.createElement("div");
     this.content = document.createElement("div");
@@ -64,12 +66,15 @@ class Form {
     this.submitBtn = document.createElement("button");
   }
 
+  // Ajout des classes
+
   addingClass() {
     this.contactModal.classList.add("contact_modal");
     this.content.classList.add("content_form");
     this.formHeader.classList.add("form_header");
     this.formTitle.classList.add("form_title");
     this.closeBtn.classList.add("close_btn");
+
     this.modalBody.classList.add("modal_body");
     this.form.classList.add("form");
     this.formDataName.classList.add("form_data");
@@ -87,6 +92,8 @@ class Form {
     this.submitBtn.classList.add("submit_btn");
   }
 
+  // Ajout du contenu
+
   addingContent() {
     this.formTitle.innerHTML = "Contactez-moi " + this.data.name;
     this.closeBtn.src = "medias/icones/close_button.png";
@@ -97,7 +104,10 @@ class Form {
     this.submitBtn.innerHTML = "Envoyer";
   }
 
+  // Ajout des attributs
+
   setAttributes() {
+    this.closeBtn.setAttribute("alt", "Bouton pour fermer la modale");
     this.labelName.setAttribute("for", "last");
     this.labelFirst.setAttribute("for", "first");
     this.labelMail.setAttribute("for", "email");
@@ -105,22 +115,32 @@ class Form {
     this.inputName.setAttribute("id", "last");
     this.inputName.setAttribute("type", "text");
     this.inputName.setAttribute("name", "last");
+    this.inputName.setAttribute("aria-label", "Champs du nom");
     this.inputFirstName.setAttribute("id", "first");
     this.inputFirstName.setAttribute("type", "text");
     this.inputFirstName.setAttribute("name", "first");
+    this.inputFirstName.setAttribute("aria-label", "champs du prénom");
     this.inputEmail.setAttribute("id", "email");
     this.inputEmail.setAttribute("type", "text");
     this.inputEmail.setAttribute("name", "email");
+    this.inputEmail.setAttribute("aria-label", "champs de l'adresse mail");
     this.inputMessage.setAttribute("id", "message");
     this.inputMessage.setAttribute("type", "text");
     this.inputMessage.setAttribute("rows", 5);
     this.inputMessage.setAttribute("name", "message");
+    this.inputMessage.setAttribute("aria-label", "champs du message");
     this.errorName.setAttribute("id", "error_last");
     this.errorFirstName.setAttribute("id", "error_first");
     this.errorEmail.setAttribute("id", "error_email");
     this.errorMessage.setAttribute("id", "error_message");
     this.submitBtn.setAttribute("type", "submit");
+    this.submitBtn.setAttribute(
+      "aria-label",
+      "bouton de validation du formulaire"
+    );
   }
+
+  // Lier les éléments
 
   linkElements() {
     this.main.appendChild(this.contactModal);
