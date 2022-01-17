@@ -31,24 +31,28 @@ export class Dropdown {
     this.span2.classList.add("down");
     this.arrowIcon = document.createElement("img");
     this.arrowIcon.classList.add("arrow_icon");
+    this.arrowIcon.alt = "flèche pour ouvrir le selecteur";
     this.arrowIcon.src = "medias/icones/arrow_dropdown.png";
     this.optionPopularity = document.createElement("li");
     this.optionPopularity.classList.add("popularity");
     this.optionPopularity.setAttribute("id", "popularité");
     this.optionPopularity.setAttribute("role", "option");
     this.optionPopularity.setAttribute("value", "popularity");
+    this.optionPopularity.setAttribute("aria-label", "option popularité");
     this.optionPopularity.innerHTML = "Popularité";
     this.optionDate = document.createElement("li");
     this.optionDate.classList.add("date");
     this.optionDate.setAttribute("id", "date");
     this.optionDate.setAttribute("role", "option");
     this.optionDate.setAttribute("value", "date");
+    this.optionDate.setAttribute("aria-label", "option date");
     this.optionDate.innerHTML = "Date";
     this.optionTitle = document.createElement("li");
     this.optionTitle.classList.add("title");
     this.optionTitle.setAttribute("id", "titre");
     this.optionTitle.setAttribute("role", "option");
     this.optionTitle.setAttribute("value", "title");
+    this.optionTitle.setAttribute("aria-label", "option titre");
     this.optionTitle.innerHTML = "Titre";
 
     this.section.appendChild(this.sortMenu);
@@ -76,7 +80,7 @@ export class Dropdown {
     );
     let sortedMedias = "";
     this.sectionMedia = document.querySelector(".container");
-    console.log(this.sectionMedia);
+    //console.log(this.sectionMedia);
 
     let options = [this.optionPopularity, this.optionDate, this.optionTitle];
 
