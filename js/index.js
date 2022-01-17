@@ -61,13 +61,19 @@ class CreatePhotographerCard {
     this.linkPhotographer.href = "photographers_page.html?id=" + this.data.id;
     this.photographerPortrait.src =
       "./medias/Photographers_ID_Photos/" + this.data.portrait;
-    this.photographerPortrait.alt = this.data.name;
-    this.photographerPortrait.tabIndex = "0";
+    this.photographerPortrait.alt = "Portrait de " + this.data.name;
+
     this.photographerPortrait.id = this.data.id;
+
+    this.photographerPortrait.tabIndex = "0";
     this.photographerName.innerHTML = this.data.name;
+    this.photographerName.setAttribute("aria-label", "Nom du photographe");
     this.gps.innerHTML = this.data.city + ", " + this.data.country;
+    this.gps.setAttribute("aria-label", "Localisation du photographe");
     this.tagline.innerHTML = this.data.tagline;
+    this.tagline.setAttribute("aria-label", "Citation du photographe");
     this.price.innerHTML = this.data.price + " €/jour";
+    this.price.setAttribute("aria-label", "Prix du photographe");
   }
   // Ajout des tags
   createTags() {
