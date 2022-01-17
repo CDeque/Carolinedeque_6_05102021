@@ -1,3 +1,5 @@
+import { Lightbox } from "./lightbox.js";
+import { Dropdown } from "./dropdown.js";
 fetch("photographers.json")
   .then((res) => {
     if (res.ok) {
@@ -15,6 +17,8 @@ fetch("photographers.json")
         medias.push(new CreatePhotographerMedia(media));
       }
     });
+    new Lightbox();
+    new Dropdown();
   })
   .catch((err) => {
     return Error(err);
@@ -59,8 +63,10 @@ class CreatePhotographerMedia {
     this.likesContainer.classList.add("likes_container");
     this.likesNumber.classList.add("likes_number");
     this.likesNumber.setAttribute("id", "likes");
+    this.likesNumber.setAttribute("aria-label", "Nombre de likes");
     this.heartIcon.classList.add("heart_icon");
     this.heartIcon.setAttribute("id", "heart");
+    this.heartIcon.setAttribute("aria-label", "icone likes");
   }
   // Ajout du contenu
   addingContent() {
@@ -74,13 +80,16 @@ class CreatePhotographerMedia {
 
     if ("image" in this.data) {
       this.image = document.createElement("img");
-      this.image.classList.add("photo");
+      this.image.classList.add("media");
       this.image.src =
         "./medias/" + this.data.photographerId + "/" + this.data.image;
+      this.image.alt = "Photographie" + this.data.title;
+      this.image.setAttribute("date", this.data.date);
       this.image.setAttribute("id", this.data.id);
-      this.title = document.createElement("h3");
-      this.title.classList.add("photo_title");
+      this.title = document.createElement("h2");
       this.title.innerHTML = this.data.title;
+      this.title.setAttribute("aria-label", "titre de l'image");
+      this.title.classList.add("media_title");
 
       this.divMedia.appendChild(this.image);
       this.divText.appendChild(this.titleContainer);
@@ -95,12 +104,14 @@ class CreatePhotographerMedia {
   createVideo() {
     if ("video" in this.data) {
       this.video = document.createElement("video");
-      this.video.classList.add("video");
+      this.video.classList.add("media");
       this.video.src =
         "./medias/" + this.data.photographerId + "/" + this.data.video;
+      this.video.alt = "vidéo" + this.data.title;
+      this.video.setAttribute("date", this.data.date);
       this.video.setAttribute("id", this.data.id);
       this.title = document.createElement("h3");
-      this.title.classList.add("video_title");
+      this.title.classList.add("media_title");
       this.title.innerHTML = this.data.title;
 
       this.divMedia.appendChild(this.video);
@@ -123,7 +134,7 @@ class CreatePhotographerMedia {
   //incrementer les likes
   incrementLikes() {
     //On récuperer la classe des coeurs
-    let heartsBtn = this.likesNumber.nextElementSibling.childNodes;
+    let heartsBtn = document.querySelectorAll(".heart_icon");
 
     //console.log(heartsBtn);
 

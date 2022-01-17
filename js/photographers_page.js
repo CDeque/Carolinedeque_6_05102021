@@ -55,11 +55,20 @@ class CreatePhotographerPage {
     this.article.classList.add("photographer_profile");
     this.div.classList.add("profile_container");
     this.photographerName.classList.add("name_profile");
+    this.photographerName.setAttribute("aria-label", "Nom du photographe");
     this.city.classList.add("location_profile");
+    this.city.setAttribute("aria-label", "Ville du photographe");
     this.tagline.classList.add("tagline_profile");
+    this.tagline.setAttribute("aria-label", "Citation du photographe");
     this.tagsContainer.classList.add("tags_container_profile");
+    this.tagsContainer.setAttribute("aria-label", "catégories du photographe");
     this.contactBtn.classList.add("contact_btn");
+    this.contactBtn.setAttribute("aria-label", "bouton de contact");
     this.photographerPortrait.classList.add("photo_id_profile");
+    this.photographerPortrait.setAttribute(
+      "alt",
+      "Photo profil du photographe"
+    );
   }
 
   //ajout du contenu
