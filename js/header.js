@@ -5,7 +5,7 @@ function pageContent() {
   const nav = document.querySelector("nav");
   const linkContent = document.createElement("a");
   linkContent.href = "./index.html";
-  const pageContentContainer = document.createElement("p");
+  const pageContentContainer = document.createElement("h3");
 
   pageContentContainer.classList.add("content");
   pageContentContainer.setAttribute("id", "content");
