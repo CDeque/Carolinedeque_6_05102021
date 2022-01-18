@@ -69,3 +69,12 @@
   width: 16px;
   display: flex;
 }
+
+/**** media queries ****/
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  .sort_menu,
+  .sort_div,
+  .dropdown_btn {
+    display: none;
+  }
+}

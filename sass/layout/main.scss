@@ -37,6 +37,7 @@ header {
   background-color: #db8876;
   border-radius: 5px;
   padding: 5px;
+  margin: 0 auto;
   font-size: 18px;
   font-weight: 700;
   text-align: center;
@@ -71,14 +72,14 @@ nav {
   color: $white;
 }
 
-h1 {
+.header_title {
   color: $primary;
   font-size: 36px;
   font-weight: 400;
   margin: 0;
 }
 
-/*Main*/
+/**** Main ****/
 .main {
   display: flex;
   flex-wrap: wrap;

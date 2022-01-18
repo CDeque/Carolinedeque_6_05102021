@@ -105,3 +105,38 @@ input {
   text-align: center;
   padding: 18rem 2rem;
 }
+
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  .content_form,
+  .form_title,
+  .form,
+  .form_header {
+    width: 320px;
+  }
+  .content_form {
+    height: 750px;
+  }
+  .close_btn {
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+  .form_title {
+    font-size: 36px;
+  }
+  .user_lastName,
+  .user_firstName,
+  .user_email {
+    width: 300px;
+    height: 52px;
+  }
+  .user_message {
+    width: 300px;
+    height: 184px;
+    margin-bottom: 10px;
+  }
+  label {
+    font-size: 24px;
+  }
+}

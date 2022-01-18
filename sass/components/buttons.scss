@@ -25,10 +25,23 @@
     background-color: $form;
     color: $black;
   }
+  @media only screen and (min-width: 375px) and (max-width: 600px) {
+    position: fixed;
+    font-size: 18px;
+    width: 150px;
+    height: 25px;
+    left: 25%;
+  }
 }
 
 .submit_btn {
   margin-top: 10px;
+  @media only screen and (min-width: 375px) and (max-width: 600px) {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .btn_validation {
   margin: auto;

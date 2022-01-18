@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(250, 250, 250, 0.9);
+  background-color: rgba(250, 250, 250, 0.95);
 }
 
 .lightbox_container {
@@ -15,14 +15,34 @@
   justify-content: center;
   margin: 0 auto;
 }
-
-.image_lightbox {
-  max-width: 100%;
-  width: 1050px;
-  height: auto;
+.lightbox_container {
+  .photo_lightbox,
+  .video_lightbox {
+    max-width: 100%;
+    width: 1050px;
+    height: 700px;
+    object-fit: contain;
+    background-color: transparent;
+  }
 }
 
-.photo_title {
+.media_title {
   display: flex;
   align-self: flex-start;
+  color: $primary;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 10px 0;
+}
+.next,
+.previous {
+  border: none;
+  background-color: transparent;
+}
+.next,
+.previous {
+  transition: transform 100ms ease-in-out;
+  &:active {
+    transform: scale(1.2);
+  }
 }

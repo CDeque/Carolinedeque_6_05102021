@@ -110,7 +110,7 @@ class CreatePhotographerMedia {
       this.video.alt = "vidéo" + this.data.title;
       this.video.setAttribute("date", this.data.date);
       this.video.setAttribute("id", this.data.id);
-      this.title = document.createElement("h3");
+      this.title = document.createElement("h2");
       this.title.classList.add("media_title");
       this.title.innerHTML = this.data.title;
 
