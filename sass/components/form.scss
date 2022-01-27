@@ -9,15 +9,17 @@
   top: 0;
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .content_form {
   display: block;
   background-color: $form;
   width: 669px;
-  height: 900px;
+  max-height: 1050px;
   border-radius: 5px;
-  margin: 30px auto;
+  margin: 20px auto;
   padding: 10px;
 }
 
@@ -43,9 +45,7 @@
   margin: auto;
   width: 599px;
 }
-.form_data {
-  padding-top: 10px;
-}
+
 label {
   font-size: 36px;
 }
@@ -96,7 +96,7 @@ input {
   color: #e54858;
   font-size: 1.5em;
 }
-
+/**** Proprièté de validation ****/
 .validationText {
   color: green;
 
@@ -105,7 +105,7 @@ input {
   text-align: center;
   padding: 18rem 2rem;
 }
-
+/**** Medias Queries ****/
 @media only screen and (min-width: 375px) and (max-width: 600px) {
   .content_form,
   .form_title,
@@ -114,7 +114,7 @@ input {
     width: 320px;
   }
   .content_form {
-    height: 750px;
+    height: 800px;
   }
   .close_btn {
     width: 18px;
@@ -138,5 +138,8 @@ input {
   }
   label {
     font-size: 24px;
+  }
+  .error {
+    font-size: 14px;
   }
 }

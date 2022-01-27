@@ -1,5 +1,5 @@
-import { Lightbox } from "./lightbox.js";
-import { Dropdown } from "./dropdown.js";
+import Dropdown from "./dropdown.js";
+
 fetch("photographers.json")
   .then((res) => {
     if (res.ok) {
@@ -17,7 +17,6 @@ fetch("photographers.json")
         medias.push(new CreatePhotographerMedia(media));
       }
     });
-    new Lightbox();
     new Dropdown();
   })
   .catch((err) => {
@@ -43,6 +42,7 @@ class CreatePhotographerMedia {
   }
 
   // Création des Eléments
+
   createGalleryElements() {
     this.article = document.createElement("article");
     this.divMedia = document.createElement("div");
@@ -86,6 +86,7 @@ class CreatePhotographerMedia {
       this.image.alt = "Photographie" + this.data.title;
       this.image.setAttribute("date", this.data.date);
       this.image.setAttribute("id", this.data.id);
+      this.image.tabIndex = 0;
       this.title = document.createElement("h2");
       this.title.innerHTML = this.data.title;
       this.title.setAttribute("aria-label", "titre de l'image");
@@ -110,6 +111,7 @@ class CreatePhotographerMedia {
       this.video.alt = "vidéo" + this.data.title;
       this.video.setAttribute("date", this.data.date);
       this.video.setAttribute("id", this.data.id);
+      this.video.tabIndex = 0;
       this.title = document.createElement("h2");
       this.title.classList.add("media_title");
       this.title.innerHTML = this.data.title;
@@ -134,7 +136,7 @@ class CreatePhotographerMedia {
   //incrementer les likes
   incrementLikes() {
     //On récuperer la classe des coeurs
-    let heartsBtn = document.querySelectorAll(".heart_icon");
+    let heartsBtn = this.likesNumber.nextElementSibling.childNodes;
 
     //console.log(heartsBtn);
 
@@ -159,6 +161,7 @@ class CreatePhotographerMedia {
       });
     });
   }
+
   totalLikes() {
     this.totalLikes = 0;
     this.numbers = document.querySelectorAll("#likes");

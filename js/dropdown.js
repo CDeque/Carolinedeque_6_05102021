@@ -1,15 +1,17 @@
-import { Lightbox } from "./lightbox.js";
+import Lightbox from "./lightbox.js";
 
-export class Dropdown {
+export default class Dropdown {
   constructor() {
     this.main = document.querySelector("main");
     this.section = document.querySelector(".profile_container");
-    this.sectionMedia = document.querySelector(".container");
 
     let sortedMedias = "";
+
     this.createDropdown();
     this.activeDropdown();
     this.sortMedia();
+    this.sortMediaOnLoad();
+    new Lightbox();
     this.displayMedia(sortedMedias);
   }
 
@@ -24,9 +26,11 @@ export class Dropdown {
     this.span.innerHTML = "Trier par";
     this.ul = document.createElement("ul");
     this.ul.classList.add("sort_container");
-    this.DropdownBtn = document.createElement("button");
-    this.DropdownBtn.classList.add("dropdown_btn");
-    this.DropdownBtn.innerHTML = "Popularité";
+    this.dropdownBtn = document.createElement("button");
+    this.dropdownBtn.classList.add("dropdown_btn");
+    this.dropdownBtn.setAttribute("tabindex", "0");
+    this.dropdownBtn.setAttribute("id", "popularité");
+    this.dropdownBtn.innerHTML = "Popularité";
     this.span2 = document.createElement("span");
     this.span2.classList.add("down");
     this.arrowIcon = document.createElement("img");
@@ -39,6 +43,7 @@ export class Dropdown {
     this.optionPopularity.setAttribute("role", "option");
     this.optionPopularity.setAttribute("value", "popularity");
     this.optionPopularity.setAttribute("aria-label", "option popularité");
+    this.optionPopularity.tabIndex = 0;
     this.optionPopularity.innerHTML = "Popularité";
     this.optionDate = document.createElement("li");
     this.optionDate.classList.add("date");
@@ -46,6 +51,7 @@ export class Dropdown {
     this.optionDate.setAttribute("role", "option");
     this.optionDate.setAttribute("value", "date");
     this.optionDate.setAttribute("aria-label", "option date");
+    this.optionDate.tabIndex = 0;
     this.optionDate.innerHTML = "Date";
     this.optionTitle = document.createElement("li");
     this.optionTitle.classList.add("title");
@@ -53,31 +59,35 @@ export class Dropdown {
     this.optionTitle.setAttribute("role", "option");
     this.optionTitle.setAttribute("value", "title");
     this.optionTitle.setAttribute("aria-label", "option titre");
+    this.optionTitle.tabIndex = 0;
     this.optionTitle.innerHTML = "Titre";
 
     this.section.appendChild(this.sortMenu);
     this.sortMenu.appendChild(this.span);
     this.sortMenu.appendChild(this.div);
-    this.div.appendChild(this.DropdownBtn);
-    this.DropdownBtn.appendChild(this.arrowIcon);
+    this.div.appendChild(this.dropdownBtn);
+    this.dropdownBtn.appendChild(this.arrowIcon);
     this.div.appendChild(this.ul);
     this.ul.appendChild(this.optionPopularity);
     this.ul.appendChild(this.optionDate);
     this.ul.appendChild(this.optionTitle);
   }
+
   //Active le dropdown
   activeDropdown() {
-    this.DropdownBtn.addEventListener("click", () => {
+    this.dropdownBtn.addEventListener("click", () => {
       this.ul.style.display = "flex";
       this.optionPopularity.style.display = "flex";
       this.optionDate.style.display = "flex";
       this.optionTitle.style.display = "flex";
     });
   }
+
   sortMedia() {
     const mediaGallery = Array.from(
       document.querySelectorAll(".gallery_container")
     );
+    //console.log(mediaGallery);
     let sortedMedias = "";
     this.sectionMedia = document.querySelector(".container");
     //console.log(this.sectionMedia);
@@ -91,16 +101,16 @@ export class Dropdown {
         //condition pour afficher le choix
         if (option.id === "popularité") {
           this.ul.style.display = "none";
-          this.DropdownBtn.innerHTML = option.innerHTML;
-          this.DropdownBtn.appendChild(this.arrowIcon);
+          this.dropdownBtn.innerHTML = option.innerHTML;
+          this.dropdownBtn.appendChild(this.arrowIcon);
         } else if (option.id === "date") {
           this.ul.style.display = "none";
-          this.DropdownBtn.innerHTML = option.innerHTML;
-          this.DropdownBtn.appendChild(this.arrowIcon);
+          this.dropdownBtn.innerHTML = option.innerHTML;
+          this.dropdownBtn.appendChild(this.arrowIcon);
         } else if (option.id === "titre") {
           this.ul.style.display = "none";
-          this.DropdownBtn.innerHTML = option.innerHTML;
-          this.DropdownBtn.appendChild(this.arrowIcon);
+          this.dropdownBtn.innerHTML = option.innerHTML;
+          this.dropdownBtn.appendChild(this.arrowIcon);
         }
 
         //switch pour trier les medias
@@ -108,7 +118,7 @@ export class Dropdown {
           // En fonction de la popularité
 
           case "popularité":
-            document.querySelector(".container").innerHTML = "";
+            this.sectionMedia = "";
             sortedMedias = mediaGallery.sort(
               (a, b) =>
                 b.children[1].children[1].children[0].innerHTML -
@@ -117,7 +127,7 @@ export class Dropdown {
 
             break;
           case "date":
-            document.querySelector(".container").innerHTML = "";
+            this.sectionMedia = "";
             sortedMedias = mediaGallery.sort((a, b) =>
               b.children[0].children[0]
                 .getAttribute("date")
@@ -126,7 +136,7 @@ export class Dropdown {
 
             break;
           case "titre":
-            document.querySelector(".container").innerHTML = "";
+            this.sectionMedia = "";
             sortedMedias = mediaGallery.sort((a, b) =>
               a.children[1].children[0].children[0].innerHTML.localeCompare(
                 b.children[1].children[0].children[0].innerHTML
@@ -141,13 +151,31 @@ export class Dropdown {
       });
     });
   }
+  sortMediaOnLoad() {
+    const mediaGallery = Array.from(
+      document.querySelectorAll(".gallery_container")
+    );
+    let sortedMedias = "";
+    this.sectionMedia = document.querySelector(".container");
+    //console.log(this.sectionMedia);
+
+    // tri des medias pour l'option populaire au chargement de la page
+    if (this.dropdownBtn.id === "popularité") {
+      document.querySelector(".container").innerHTML = "";
+      sortedMedias = mediaGallery.sort(
+        (a, b) =>
+          b.children[1].children[1].children[0].innerHTML -
+          a.children[1].children[1].children[0].innerHTML
+      );
+      this.displayMedia(sortedMedias);
+    }
+  }
+
   displayMedia(sortedMedias) {
     // on ré-injecte les medias dans la section
 
     sortedMedias.forEach((element) => {
       document.querySelector(".container").appendChild(element);
     });
-    //mise a jour le la lightbox et des likes
-    new Lightbox(sortedMedias);
   }
 }

@@ -125,8 +125,8 @@ class Form {
     this.inputEmail.setAttribute("name", "email");
     this.inputEmail.setAttribute("aria-label", "champs de l'adresse mail");
     this.inputMessage.setAttribute("id", "message");
-    this.inputMessage.setAttribute("type", "text");
-    this.inputMessage.setAttribute("rows", 5);
+    this.inputMessage.setAttribute("type", "textarea");
+
     this.inputMessage.setAttribute("name", "message");
     this.inputMessage.setAttribute("aria-label", "champs du message");
     this.errorName.setAttribute("id", "error_last");
@@ -180,7 +180,10 @@ class Form {
     //console.log(this.contactModal);
     this.contactBtn.addEventListener("click", () => {
       this.contactModal.style.display = "block";
-      console.log("click");
+      //console.log("click");
+
+      // on cache le dropdown
+      document.querySelector(".sort_menu").style.display = "none";
     });
   }
 
@@ -189,6 +192,9 @@ class Form {
   closeModal() {
     this.closeBtn.addEventListener("click", () => {
       this.contactModal.style.display = "none";
+
+      // on affiche le dropdown
+      document.querySelector(".sort_menu").style.display = "flex";
     });
   }
 

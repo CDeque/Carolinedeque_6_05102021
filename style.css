@@ -40,6 +40,7 @@ header {
   background-color: #db8876;
   border-radius: 5px;
   padding: 5px;
+  margin: 0 auto;
   font-size: 18px;
   font-weight: 700;
   text-align: center;
@@ -75,14 +76,14 @@ nav {
   color: #fff;
 }
 
-h1 {
+.header_title {
   color: #901c1c;
   font-size: 36px;
   font-weight: 400;
   margin: 0;
 }
 
-/*Main*/
+/**** Main ****/
 .main {
   display: flex;
   flex-wrap: wrap;
@@ -197,16 +198,19 @@ body {
   font-size: 24px;
   font-weight: 400;
   color: #901c1c;
+  margin: 10px 0;
 }
 
 .tagline_profile {
   font-size: 18px;
   font-weight: 400;
   color: #525252;
+  margin: 10px 0;
 }
 
 .tags_container_profile {
   padding: 0;
+  margin: 10px 0;
 }
 
 .tag_list {
@@ -304,6 +308,121 @@ button {
   transform: scale(1.2);
 }
 
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  /**** Page d'Accueil ****/
+  header {
+    justify-content: space-between;
+    width: 320px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  .nav_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    top: 90px;
+    width: 320px;
+    margin-top: 0px;
+    margin-right: 30px;
+    padding: 0;
+  }
+
+  .tag,
+.profile_tag {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .header_title {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /**** Main ****/
+  main {
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 320px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .photographers_card {
+    margin: 0;
+    padding: 10px 0;
+    width: auto;
+  }
+
+  .content {
+    left: 27.5%;
+  }
+
+  /**** Page photographe ****/
+  .header_photographer {
+    margin-bottom: 10px;
+  }
+
+  .photographer_container {
+    padding-top: 0px;
+  }
+
+  .photographer_profile {
+    margin-top: 20px;
+    padding: 0px;
+    background-color: #fff;
+  }
+
+  .name_profile {
+    font-size: 36px;
+  }
+
+  .location_profile {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .tagline_profile {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .photo_id_profile {
+    width: 100px;
+    height: 100px;
+    margin-left: -90px;
+    margin-top: -35px;
+    margin-right: 0;
+  }
+
+  .tags_container_profile {
+    margin-top: 25px;
+  }
+
+  .container {
+    width: 320px;
+    margin: 0;
+  }
+
+  .media_container img,
+.media_container video {
+    width: 320px;
+  }
+
+  .text_container {
+    width: 320px;
+  }
+
+  .sticker_container {
+    display: none;
+  }
+}
 /**** Paramètres bouton contact, envoyer ****/
 .contact_btn,
 .submit_btn,
@@ -330,9 +449,26 @@ button {
   background-color: #db8876;
   color: #000;
 }
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  .contact_btn {
+    position: fixed;
+    font-size: 18px;
+    width: 150px;
+    height: 25px;
+    left: 25%;
+  }
+}
 
 .submit_btn {
   margin-top: 10px;
+}
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  .submit_btn {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .btn_validation {
@@ -441,6 +577,14 @@ button {
   display: flex;
 }
 
+/**** media queries ****/
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  .sort_menu,
+.sort_div,
+.dropdown_btn {
+    display: none;
+  }
+}
 /**** Paramètres du formulaire de contact ****/
 .contact_modal {
   display: none;
@@ -451,15 +595,17 @@ button {
   top: 0;
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .content_form {
   display: block;
   background-color: #db8876;
   width: 669px;
-  height: 900px;
+  max-height: 1050px;
   border-radius: 5px;
-  margin: 30px auto;
+  margin: 20px auto;
   padding: 10px;
 }
 
@@ -485,10 +631,6 @@ button {
 .form {
   margin: auto;
   width: 599px;
-}
-
-.form_data {
-  padding-top: 10px;
 }
 
 label {
@@ -544,6 +686,7 @@ input {
   font-size: 1.5em;
 }
 
+/**** Proprièté de validation ****/
 .validationText {
   color: green;
   font-size: 24px;
@@ -551,6 +694,51 @@ input {
   padding: 18rem 2rem;
 }
 
+/**** Medias Queries ****/
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  .content_form,
+.form_title,
+.form,
+.form_header {
+    width: 320px;
+  }
+
+  .content_form {
+    height: 800px;
+  }
+
+  .close_btn {
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+
+  .form_title {
+    font-size: 36px;
+  }
+
+  .user_lastName,
+.user_firstName,
+.user_email {
+    width: 300px;
+    height: 52px;
+  }
+
+  .user_message {
+    width: 300px;
+    height: 184px;
+    margin-bottom: 10px;
+  }
+
+  label {
+    font-size: 24px;
+  }
+
+  .error {
+    font-size: 14px;
+  }
+}
 /**** Propriètés de la lightbox ****/
 .lightbox {
   display: none;
@@ -574,7 +762,7 @@ input {
   max-width: 100%;
   width: 1050px;
   height: 700px;
-  object-fit: contain;
+  object-fit: cover;
   background-color: transparent;
 }
 
