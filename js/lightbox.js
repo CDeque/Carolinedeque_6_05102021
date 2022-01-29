@@ -1,12 +1,15 @@
 export default class Lightbox {
   constructor() {
     this.createLightbox();
+
     this.closeLightbox();
+
     this.displayLightbox();
+
     this.loadMedia();
+
     this.nextMedia();
     this.previousMedia();
-    this.keyboardNav();
   }
 
   createLightbox() {
@@ -25,7 +28,7 @@ export default class Lightbox {
     this.div.classList.add("lightbox");
     this.lightBoxClsBtn.classList.add("lightbox_close_button");
     this.lightBoxClsBtn.setAttribute = ("alt", "Bouton fermer");
-    this.closebtnIcon.setAttributeNS = ("alt", "icone fermer");
+    this.closebtnIcon.setAttribute = ("alt", "icone fermer");
     this.prev.classList.add("previous");
     this.prev.setAttribute = ("alt", "bouton image précédente");
     this.prevIcon.setAttribute = ("alt", "icône image précédente");
@@ -57,8 +60,19 @@ export default class Lightbox {
       this.div.style.display = "none";
 
       //affiche le sticker et dropdown a la fermeture de la lightbox
-      document.querySelector(".footer_sticker, .sort_menu").style.display =
-        "flex";
+      document.querySelector(".sort_menu").style.display = "flex";
+      document.querySelector(".footer_sticker").style.display = "flex";
+    });
+    //------------------------------navigation Clavier------------------------------
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.div.style.display = "none";
+
+        //affiche le sticker et dropdown a la fermeture de la lightbox
+        document.querySelector(".sort_menu").style.display = "flex";
+        document.querySelector(".footer_sticker").style.display = "flex";
+      }
     });
   }
 
@@ -76,8 +90,8 @@ export default class Lightbox {
         loadLightbox.style.display = "flex"; //rend active la lightbox
 
         // cache le sticker et le dropdown lorsque que la lightbox est ouverte
-        document.querySelector(".footer_sticker, .sort_menu").style.display =
-          "none";
+        document.querySelector(".sort_menu").style.display = "none";
+        document.querySelector(".footer_sticker").style.display = "none";
 
         this.lightboxContainer.innerHTML = ""; //vide le container avant de charger le media
 
@@ -85,10 +99,20 @@ export default class Lightbox {
         this.nextMedia();
         this.previousMedia();
       });
+      //navigation clavier
       medSrc.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
-          this.displayLightbox();
+          loadLightbox.style.display = "flex";
+
+          document.querySelector(".sort_menu").style.display = "none";
+          document.querySelector(".footer_sticker").style.display = "none";
+
+          this.lightboxContainer.innerHTML = "";
+
+          this.loadMedia(medSrc);
+          this.nextMedia();
+          this.previousMedia();
         }
       });
     });
@@ -153,6 +177,25 @@ export default class Lightbox {
           count
         ].parentNode.nextSibling.children[0].children[0].innerHTML;
     });
+    //------------------------------navigation Clavier------------------------------
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+
+        if (count < nbSlide - 1) {
+          count++;
+        } else {
+          count = 0;
+        }
+
+        this.loadMedia(mediasSource[count]);
+        this.title.innerHTML =
+          mediasSource[
+            count
+          ].parentNode.nextSibling.children[0].children[0].innerHTML;
+      }
+    });
   }
 
   //-----------------------Previous Media-----------------------//
@@ -179,16 +222,24 @@ export default class Lightbox {
           count
         ].parentNode.nextSibling.children[0].children[0].innerHTML;
     });
-  }
-  //navigation clavier
-  keyboardNav() {
-    this.lightboxContainer.addEventListener("keydown", (e) => {
-      if (e.key == "Escape") {
-        this.closeLightbox();
-      } else if (e.key == "ArrowLeft") {
-        this.previousMedia();
-      } else if (e.key == "ArrowRight") {
-        this.nextMedia();
+
+    //------------------------------navigation Clavier------------------------------
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+
+        if (count > 0) {
+          count--;
+        } else {
+          count = nbSlide - 1;
+        }
+
+        this.loadMedia(mediasSource[count]);
+        this.title.innerHTML =
+          mediasSource[
+            count
+          ].parentNode.nextSibling.children[0].children[0].innerHTML;
       }
     });
   }
