@@ -107,6 +107,7 @@ class Form {
   // Ajout des attributs
 
   setAttributes() {
+    this.form.setAttribute("role", "formulaire de contact");
     this.closeBtn.setAttribute("alt", "Bouton pour fermer la modale");
     this.labelName.setAttribute("for", "last");
     this.labelFirst.setAttribute("for", "first");
@@ -115,19 +116,23 @@ class Form {
     this.inputName.setAttribute("id", "last");
     this.inputName.setAttribute("type", "text");
     this.inputName.setAttribute("name", "last");
+    this.inputName.setAttribute("placeholder", "Nom");
     this.inputName.setAttribute("aria-label", "Champs du nom");
     this.inputFirstName.setAttribute("id", "first");
     this.inputFirstName.setAttribute("type", "text");
     this.inputFirstName.setAttribute("name", "first");
+    this.inputFirstName.setAttribute("placeholder", "Prénom");
     this.inputFirstName.setAttribute("aria-label", "champs du prénom");
     this.inputEmail.setAttribute("id", "email");
     this.inputEmail.setAttribute("type", "text");
     this.inputEmail.setAttribute("name", "email");
+    this.inputEmail.setAttribute("placeholder", "exemple@email.com");
     this.inputEmail.setAttribute("aria-label", "champs de l'adresse mail");
     this.inputMessage.setAttribute("id", "message");
     this.inputMessage.setAttribute("type", "textarea");
 
     this.inputMessage.setAttribute("name", "message");
+    this.inputMessage.setAttribute("placeholder", "Votre message...");
     this.inputMessage.setAttribute("aria-label", "champs du message");
     this.errorName.setAttribute("id", "error_last");
     this.errorFirstName.setAttribute("id", "error_first");
@@ -180,8 +185,9 @@ class Form {
     //console.log(this.contactModal);
     this.contactBtn.addEventListener("click", () => {
       this.contactModal.style.display = "block";
-      //console.log("click");
 
+      // j'ajoute le focus sur le premier champs a l'ouverture du formulaire
+      this.inputName.focus();
       // on cache le dropdown
       document.querySelector(".sort_menu").style.display = "none";
     });
@@ -195,6 +201,15 @@ class Form {
 
       // on affiche le dropdown
       document.querySelector(".sort_menu").style.display = "flex";
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        this.contactModal.style.display = "none";
+
+        // on affiche le dropdown
+        document.querySelector(".sort_menu").style.display = "flex";
+      }
     });
   }
 
@@ -321,14 +336,28 @@ class Form {
       } else if (validationMessage() === false) {
         return false;
       } else {
+        // affichage dans la console
+        console.log(
+          "Nom:",
+          form.elements["last"].value,
+          ",",
+          "Prénom:",
+          form.elements["first"].value,
+          ",",
+          "email:",
+          form.elements["email"].value,
+          ",",
+          "Message:",
+          form.elements["message"].value
+        );
+        // ajout du message de validation
+        let validationText = document.createElement("span");
+        validationText.classList.add("validationText");
+        validationText.textContent = "Votre message a été enregistré";
+        this.form.appendChild(validationText);
+
         //remet a zero le form
         form.reset();
-
-        // ajout du message de validation
-        let validationMessage = document.createElement("span");
-        validationMessage.classList.add("validationText");
-        validationMessage.textContent = "Votre message a été enregistré";
-        this.form.appendChild(validationMessage);
       }
     });
   }
