@@ -99,7 +99,8 @@ export default class Lightbox {
         this.nextMedia();
         this.previousMedia();
       });
-      //navigation clavier
+
+      //--------------------navigation clavier--------------------//
       medSrc.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
@@ -124,6 +125,7 @@ export default class Lightbox {
       this.media = new Image();
       this.media.src = medSrc.src;
       this.media.classList.add("photo_lightbox");
+      this.media.alt = this.data.alt;
       this.media.tabIndex = 0;
       this.title = document.createElement("p");
       this.title.classList.add("media_title");
@@ -139,7 +141,8 @@ export default class Lightbox {
       this.media.src = medSrc.src;
       this.media.classList.add("video_lightbox");
       this.media.tabIndex = "0";
-      this.media.setAttribute("controls", "");
+      this.media.alt = this.data.alt;
+      this.media.setAttribute("controls", "controls ");
       this.title = document.createElement("p");
       this.title.classList.add("media_title");
       this.title.innerHTML =
