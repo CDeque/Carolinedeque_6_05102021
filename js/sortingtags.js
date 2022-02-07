@@ -84,6 +84,14 @@ setTimeout(() => {
         //console.log(tagEvent);
         new SortingTags(tagEvent, filtersArray);
       });
+
+      // navigation Clavier
+      tag.addEventListener("keydown", (e) => {
+        let tagEvent = e.target;
+        if (e.key === "Enter") {
+          new SortingTags(tagEvent, filtersArray);
+        }
+      });
     }
   } else if (regTag.test(window.location.search)) {
     //console.log(regTag.test(window.location.search));

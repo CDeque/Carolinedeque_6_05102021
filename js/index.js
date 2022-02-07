@@ -22,10 +22,12 @@ class CreatePhotographerCard {
     this.data = data;
     //console.log(this.data);
     this.main = document.querySelector("main");
+
     this.createCard();
     this.addingClass();
     this.addingTextContent();
     this.createTags();
+    this.keyboardNav();
     this.linkElements();
   }
   // Creation HTML
@@ -45,6 +47,7 @@ class CreatePhotographerCard {
   //Ajout classes
   addingClass() {
     this.article.classList.add("photographers_card");
+    this.article.tabIndex = "0";
     this.linkPhotographer.classList.add("photographer_id");
     this.photographerPortrait.classList.add("photo_id");
     this.div.classList.add("photographers_content");
@@ -62,10 +65,7 @@ class CreatePhotographerCard {
     this.photographerPortrait.src =
       "./medias/Photographers_ID_Photos/" + this.data.portrait;
     this.photographerPortrait.alt = "Portrait de " + this.data.name;
-
     this.photographerPortrait.id = this.data.id;
-
-    this.photographerPortrait.tabIndex = "0";
     this.photographerName.innerHTML = this.data.name;
     this.photographerName.setAttribute("aria-label", "Nom du photographe");
     this.gps.innerHTML = this.data.city + ", " + this.data.country;
@@ -88,11 +88,21 @@ class CreatePhotographerCard {
       this.tagList.classList.add("tag");
       this.tagList.setAttribute("aria-label", tag);
       this.tagList.innerHTML = "#" + tag;
+      this.tagList.tabIndex = "0";
 
       this.tagAnchor.appendChild(this.tagList);
 
       tagsArray.push(tag);
       //console.log(tagsArray);
+    });
+  }
+  keyboardNav() {
+    //ajout de la navigation clavier
+
+    this.article.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        document.location.href = "photographers_page.html?id=" + this.data.id;
+      }
     });
   }
 

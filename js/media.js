@@ -64,6 +64,7 @@ class CreatePhotographerMedia {
     this.likesNumber.classList.add("likes_number");
     this.likesNumber.setAttribute("id", "likes");
     this.likesNumber.setAttribute("aria-label", "Nombre de likes");
+    this.btnIcon.setAttribute("id", "btn_icon");
     this.heartIcon.classList.add("heart_icon");
     this.heartIcon.setAttribute("id", "heart");
     this.heartIcon.setAttribute("aria-label", "icone likes");
@@ -81,17 +82,17 @@ class CreatePhotographerMedia {
     if ("image" in this.data) {
       this.image = document.createElement("img");
       this.image.classList.add("media");
+      this.image.tabIndex = "0";
       this.image.src =
         "./medias/" + this.data.photographerId + "/" + this.data.image;
-      this.image.alt = "Photographie" + this.data.title;
+      this.image.alt = this.data.alt;
       this.image.setAttribute("date", this.data.date);
       this.image.setAttribute("id", this.data.id);
-      this.image.tabIndex = 0;
+
       this.title = document.createElement("h2");
       this.title.innerHTML = this.data.title;
       this.title.setAttribute("aria-label", "titre de l'image");
       this.title.classList.add("media_title");
-
       this.divMedia.appendChild(this.image);
       this.divText.appendChild(this.titleContainer);
       this.titleContainer.appendChild(this.title);
@@ -108,10 +109,10 @@ class CreatePhotographerMedia {
       this.video.classList.add("media");
       this.video.src =
         "./medias/" + this.data.photographerId + "/" + this.data.video;
-      this.video.alt = "vidéo" + this.data.title;
+      this.video.alt = this.data.alt;
       this.video.setAttribute("date", this.data.date);
       this.video.setAttribute("id", this.data.id);
-      this.video.tabIndex = 0;
+      this.video.tabIndex = "0";
       this.title = document.createElement("h2");
       this.title.classList.add("media_title");
       this.title.innerHTML = this.data.title;
@@ -136,12 +137,14 @@ class CreatePhotographerMedia {
   //incrementer les likes
   incrementLikes() {
     //On récuperer la classe des coeurs
-    let heartsBtn = this.likesNumber.nextElementSibling.childNodes;
+    let heartsBtn = [this.btnIcon];
 
     //console.log(heartsBtn);
 
     heartsBtn.forEach((heart) => {
-      heart.addEventListener("click", () => {
+      heart.addEventListener("click", (e) => {
+        e.preventDefault();
+
         //si le coeur est cliqué on ajoute la classe "liked"
         heart.classList.toggle("liked");
 
@@ -150,7 +153,6 @@ class CreatePhotographerMedia {
         //console.log(likesNumber);
 
         // On ajoute une condition afin d'ajouter +1 au coeur contenant la classe "liked" au clic
-        //et une condition afin de retirer le like lorsque le clic a nouveau sur le coeur
 
         if (heart.classList.contains("liked")) {
           let number = parseInt(likesNumber) + 1;

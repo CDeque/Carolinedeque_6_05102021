@@ -51,7 +51,7 @@ function createHeaderNav() {
     navTags.setAttribute("aria-label", tag);
     navTags.innerHTML =
       "#" + tag.charAt(0).toUpperCase() + tag.substring(1).toLowerCase();
-
+    navTags.tabIndex = "0";
     nav.appendChild(navContainer);
     navContainer.appendChild(navTagLink);
     navTagLink.appendChild(navTags);

@@ -80,7 +80,6 @@ class CreatePhotographerPage {
     this.photographerPortrait.src =
       "./medias/Photographers_ID_Photos/" + this.data.portrait;
     this.photographerPortrait.alt = this.data.name;
-    this.photographerPortrait.tabIndex = "0";
     this.photographerPortrait.id = this.data.id;
     this.contactBtn.innerHTML = "Contactez-moi";
   }
