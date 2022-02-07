@@ -28,7 +28,6 @@ export default class Dropdown {
     this.ul.classList.add("sort_container");
     this.dropdownBtn = document.createElement("button");
     this.dropdownBtn.classList.add("dropdown_btn");
-    this.dropdownBtn.setAttribute("tabindex", "0");
     this.dropdownBtn.setAttribute("id", "popularité");
     this.dropdownBtn.innerHTML = "Popularité";
     this.span2 = document.createElement("span");
@@ -37,29 +36,29 @@ export default class Dropdown {
     this.arrowIcon.classList.add("arrow_icon");
     this.arrowIcon.alt = "flèche pour ouvrir le selecteur";
     this.arrowIcon.src = "medias/icones/arrow_dropdown.png";
+
     this.optionPopularity = document.createElement("li");
     this.optionPopularity.classList.add("popularity");
     this.optionPopularity.setAttribute("id", "popularité");
     this.optionPopularity.setAttribute("role", "option");
     this.optionPopularity.setAttribute("value", "popularity");
-    this.optionPopularity.setAttribute("aria-label", "option popularité");
-    this.optionPopularity.tabIndex = 0;
+    this.optionPopularity.tabIndex = "0";
     this.optionPopularity.innerHTML = "Popularité";
+
     this.optionDate = document.createElement("li");
     this.optionDate.classList.add("date");
     this.optionDate.setAttribute("id", "date");
     this.optionDate.setAttribute("role", "option");
     this.optionDate.setAttribute("value", "date");
-    this.optionDate.setAttribute("aria-label", "option date");
-    this.optionDate.tabIndex = 0;
+    this.optionDate.tabIndex = "0";
     this.optionDate.innerHTML = "Date";
+
     this.optionTitle = document.createElement("li");
     this.optionTitle.classList.add("title");
     this.optionTitle.setAttribute("id", "titre");
     this.optionTitle.setAttribute("role", "option");
     this.optionTitle.setAttribute("value", "title");
-    this.optionTitle.setAttribute("aria-label", "option titre");
-    this.optionTitle.tabIndex = 0;
+    this.optionTitle.tabIndex = "0";
     this.optionTitle.innerHTML = "Titre";
 
     this.section.appendChild(this.sortMenu);
@@ -96,7 +95,7 @@ export default class Dropdown {
 
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         //condition pour afficher le choix
         if (option.id === "popularité") {
@@ -148,6 +147,63 @@ export default class Dropdown {
             break;
         }
         this.displayMedia(sortedMedias);
+      });
+
+      //------------------------------Navigation Clavier------------------------------//
+
+      option.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          //condition pour afficher le choix lorsque sur l'on appuie sur Enter sur fois l'option selectionne au tab
+          if (option.id === "popularité") {
+            this.ul.style.display = "none";
+            this.dropdownBtn.innerHTML = option.innerHTML;
+            this.dropdownBtn.appendChild(this.arrowIcon);
+          } else if (option.id === "date") {
+            this.ul.style.display = "none";
+            this.dropdownBtn.innerHTML = option.innerHTML;
+            this.dropdownBtn.appendChild(this.arrowIcon);
+          } else if (option.id === "titre") {
+            this.ul.style.display = "none";
+            this.dropdownBtn.innerHTML = option.innerHTML;
+            this.dropdownBtn.appendChild(this.arrowIcon);
+          }
+
+          //switch pour trier les medias
+          switch (e.target.id) {
+            // En fonction de la popularité
+
+            case "popularité":
+              this.sectionMedia = "";
+              sortedMedias = mediaGallery.sort(
+                (a, b) =>
+                  b.children[1].children[1].children[0].innerHTML -
+                  a.children[1].children[1].children[0].innerHTML
+              );
+
+              break;
+            case "date":
+              this.sectionMedia = "";
+              sortedMedias = mediaGallery.sort((a, b) =>
+                b.children[0].children[0]
+                  .getAttribute("date")
+                  .localeCompare(a.children[0].children[0].getAttribute("date"))
+              );
+
+              break;
+            case "titre":
+              this.sectionMedia = "";
+              sortedMedias = mediaGallery.sort((a, b) =>
+                a.children[1].children[0].children[0].innerHTML.localeCompare(
+                  b.children[1].children[0].children[0].innerHTML
+                )
+              );
+
+              break;
+            default:
+              break;
+          }
+          this.displayMedia(sortedMedias);
+        }
       });
     });
   }
