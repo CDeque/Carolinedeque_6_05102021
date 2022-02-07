@@ -92,6 +92,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .text_container {
   display: flex;
   justify-content: space-between;
@@ -107,6 +108,13 @@ body {
   border-radius: 5px;
   object-fit: cover;
   cursor: pointer;
+}
+.media:focus {
+  outline-color: rgba(0, 122, 255, 1);
+  outline-style: solid;
+  outline-width: 3px;
+  border-radius: 5px;
+  height: 300px;
 }
 
 /**** propriètés du legendes photos & video ****/
@@ -131,16 +139,17 @@ body {
   padding-right: 5px;
   margin: 10px 0;
 }
-button {
+/**** Icone Like ****/
+#btn_icon {
   border: none;
   background-color: transparent;
+  transition: transform 100ms ease-in-out;
+  &:active {
+    transform: scale(1.2);
+  }
 }
 .heart_icon {
   width: 20px;
   height: 18px;
   cursor: pointer;
-  transition: transform 100ms ease-in-out;
-  &:active {
-    transform: scale(1.2);
-  }
 }

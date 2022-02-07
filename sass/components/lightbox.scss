@@ -34,6 +34,7 @@
   font-weight: 400;
   margin: 10px 0;
 }
+
 .next,
 .previous {
   border: none;
@@ -44,5 +45,20 @@
   transition: transform 100ms ease-in-out;
   &:active {
     transform: scale(1.2);
+  }
+}
+@media only screen and (min-width: 375px) and (max-width: 600px) {
+  /**** Lightbox ****/
+  .lightbox_container {
+    .photo_lightbox,
+    .video_lightbox {
+      margin: 0 auto;
+      max-width: 100%;
+      width: 289px;
+      height: 248px;
+    }
+  }
+  .media_title {
+    font-size: 18px;
   }
 }

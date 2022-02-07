@@ -67,6 +67,7 @@ nav {
 
 .active,
 .tag:hover,
+.tag:focus,
 .profile_tag:hover {
   background-color: $primary;
   color: $white;
@@ -87,12 +88,17 @@ nav {
 }
 
 .photographers_card {
-  width: 21%;
+  width: 24%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 50px;
+  &:focus {
+    outline-color: rgba(0, 103, 244, 0.32);
+    outline-style: solid;
+    outline-width: 3px;
+  }
 }
 
 .photographers_card img {
