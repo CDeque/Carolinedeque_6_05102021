@@ -31,6 +31,7 @@
     font-size: 18px;
     width: 150px;
     height: 25px;
+    top: 8%;
     left: 25%;
   }
 }
@@ -88,13 +89,13 @@
 
 .previous img {
   @media only screen and (min-width: 375px) and (max-width: 600px) {
-    width: 20px;
+    width: 15px;
     height: 25px;
   }
 }
 .next img {
   @media only screen and (min-width: 375px) and (max-width: 600px) {
-    width: 20px;
+    width: 15px;
     height: 25px;
   }
 }

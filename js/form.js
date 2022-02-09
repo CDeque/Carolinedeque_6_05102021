@@ -130,7 +130,7 @@ class Form {
     this.inputEmail.setAttribute("aria-label", "champs de l'adresse mail");
     this.inputMessage.setAttribute("id", "message");
     this.inputMessage.setAttribute("type", "textarea");
-
+    this.inputMessage.setAttribute("size", "100");
     this.inputMessage.setAttribute("name", "message");
     this.inputMessage.setAttribute("placeholder", "Votre message...");
     this.inputMessage.setAttribute("aria-label", "champs du message");
@@ -219,7 +219,8 @@ class Form {
 
   validateForm() {
     const form = document.querySelector("form");
-    //console.log(form);
+
+    console.log(form.querySelectorAll["input"]);
 
     const inputs = document.querySelectorAll("input");
 

@@ -83,6 +83,7 @@ class CreatePhotographerMedia {
       this.image = document.createElement("img");
       this.image.classList.add("media");
       this.image.tabIndex = "0";
+      this.image.focus();
       this.image.src =
         "./medias/" + this.data.photographerId + "/" + this.data.image;
       this.image.alt = this.data.alt;
@@ -107,12 +108,12 @@ class CreatePhotographerMedia {
     if ("video" in this.data) {
       this.video = document.createElement("video");
       this.video.classList.add("media");
+      this.video.tabIndex = "0";
       this.video.src =
         "./medias/" + this.data.photographerId + "/" + this.data.video;
       this.video.alt = this.data.alt;
       this.video.setAttribute("date", this.data.date);
       this.video.setAttribute("id", this.data.id);
-      this.video.tabIndex = "0";
       this.title = document.createElement("h2");
       this.title.classList.add("media_title");
       this.title.innerHTML = this.data.title;

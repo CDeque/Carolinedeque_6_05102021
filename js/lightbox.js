@@ -16,6 +16,7 @@ export default class Lightbox {
     //creation du html
     this.main = document.querySelector("main");
     this.div = document.createElement("div");
+    this.div.tabIndex = "0";
     this.lightBoxClsBtn = document.createElement("button");
     this.closebtnIcon = document.createElement("img");
     this.prev = document.createElement("button");
@@ -121,11 +122,9 @@ export default class Lightbox {
   loadMedia(medSrc) {
     // on verifie s'il s'agit d'une photo
     if (medSrc.src.includes(".jpg")) {
-      console.log(medSrc.src.includes(".jpg"));
       this.media = new Image();
       this.media.src = medSrc.src;
       this.media.classList.add("photo_lightbox");
-      this.media.alt = this.data.alt;
       this.media.tabIndex = 0;
       this.title = document.createElement("p");
       this.title.classList.add("media_title");
@@ -141,8 +140,8 @@ export default class Lightbox {
       this.media.src = medSrc.src;
       this.media.classList.add("video_lightbox");
       this.media.tabIndex = "0";
-      this.media.alt = this.data.alt;
-      this.media.setAttribute("controls", "controls ");
+      this.media.setAttribute("controls", "controls");
+
       this.title = document.createElement("p");
       this.title.classList.add("media_title");
       this.title.innerHTML =
