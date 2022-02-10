@@ -147,21 +147,15 @@ class CreatePhotographerMedia {
       heart.addEventListener("click", (e) => {
         e.preventDefault();
 
-        //si le coeur est cliqué on ajoute la classe "liked"
-        heart.classList.toggle("liked");
-
         // on recupere les nb de like
         let likesNumber = this.likesNumber.innerHTML;
-        //console.log(likesNumber);
 
-        // On ajoute une condition afin d'ajouter +1 au coeur contenant la classe "liked" au clic
+        // j'ajoute un au compteur des likes lorsque je clique sur le bouton
 
-        if (heart.classList.contains("liked")) {
-          let number = parseInt(likesNumber) + 1;
-          this.likesNumber.innerHTML = number;
-          //console.log(number);
-          this.totalLikesNumbers.innerHTML++; // +1 au sticker de likes
-        }
+        let number = parseInt(likesNumber) + 1;
+        this.likesNumber.innerHTML = number;
+        //console.log(number);
+        this.totalLikesNumbers.innerHTML++; // +1 au sticker de likes
       });
     });
   }
