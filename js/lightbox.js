@@ -1,13 +1,9 @@
 export default class Lightbox {
   constructor() {
     this.createLightbox();
-
     this.closeLightbox();
-
     this.displayLightbox();
-
     this.loadMedia();
-
     this.nextMedia();
     this.previousMedia();
   }
@@ -54,7 +50,7 @@ export default class Lightbox {
     this.next.appendChild(this.nextIcon);
     this.div.appendChild(this.lightboxContainer);
   }
-  // Pour fermer la lightbox
+  // Pour fermer la lightbox au clic
   closeLightbox() {
     this.lightBoxClsBtn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -79,10 +75,8 @@ export default class Lightbox {
 
   displayLightbox() {
     const mediasSource = document.querySelectorAll(".media");
-    //console.log(mediasSource);
 
     const loadLightbox = document.querySelector(".lightbox");
-    //console.log(loadLightbox);
 
     mediasSource.forEach((medSrc) => {
       medSrc.addEventListener("click", (e) => {
@@ -119,6 +113,9 @@ export default class Lightbox {
       });
     });
   }
+
+  //-----------------------------------------------------------------------------------------------//
+  //On verifie s'il s'agit d'une image ou d'une vidéo avant de la générer le média dans la lightbox
   loadMedia(medSrc) {
     // on verifie s'il s'agit d'une photo
     if (medSrc.src.includes(".jpg")) {
@@ -154,16 +151,16 @@ export default class Lightbox {
 
   //-----------------------next media-----------------------//
   nextMedia() {
+    //on récupère toutes photos dans un tableau
     const mediasSource = Array.from(document.querySelectorAll(".media"));
-    //console.log(mediasSource);
 
     const nbSlide = mediasSource.length;
-    //console.log(nbSlide);
 
     const next = document.querySelector(".next");
 
     let count = 0;
 
+    // Au clic sur le bouton next on ajoute plus 1 pour passer à la photo et le titre suivant
     next.addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -180,7 +177,7 @@ export default class Lightbox {
         ].parentNode.nextSibling.children[0].children[0].innerHTML;
     });
     //------------------------------navigation Clavier------------------------------
-
+    //lorsque l'on appuie sur la fleche de droite on passe au media suivants
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
         e.preventDefault();
@@ -208,7 +205,7 @@ export default class Lightbox {
 
     let count = 0;
     const previous = document.querySelector(".previous");
-
+    // Au clic sur le bouton previous on enleve 1 pour passer à la photo et le titre précédents
     previous.addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -226,7 +223,7 @@ export default class Lightbox {
     });
 
     //------------------------------navigation Clavier------------------------------
-
+    //lorsque l'on appuie sur la fleche de gauche on passe au media prédédents
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
         e.preventDefault();

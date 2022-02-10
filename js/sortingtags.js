@@ -27,11 +27,14 @@ class SortingTags {
     this.activeTags();
     this.displayPhotographersCards();
   }
+
+  // Pour masquer les cartes photographes
   deletePhotographersCards() {
     for (let photographerCard of this.photographersCards) {
       photographerCard.style.display = "none";
     }
   }
+  // On ajoute ou retire la class "active" sur les tags et on ajoute/retire les cartes du tableau
   activeTags() {
     for (let tag of this.tags) {
       tag.classList.toggle("active");
@@ -51,26 +54,25 @@ class SortingTags {
       });
     }
   }
-
+  // on masque/affiche les cartes en fonction du filterArray
   displayPhotographersCards() {
     if (this.filtersArray.length === 0) {
       for (let photographerCard of this.photographersCards) {
         photographerCard.style.display = "flex";
-
-        //console.log((photographerCard.style.display = "flex"));
       }
     } else {
       for (let el of this.filtersArray) {
         el.style.display = "flex";
-        //console.log((el.style.display = "flex"));
       }
     }
   }
 }
-
+//------- regex   afin de verifier sur l'url comporte un parametre tag -------//
 let regTag = /\?tag=/i;
 
+//fonctionnalité des tags
 setTimeout(() => {
+  // Si l'url n'a aucun parametre alors les tags fonctionnent normalement
   if (window.location.search == "") {
     let tagsAll = document.querySelectorAll(".tag");
 
@@ -79,9 +81,10 @@ setTimeout(() => {
       let tag = tagsAll[index];
       //console.log(tag);
 
+      // lorsque je clique sur un tag j'affiche les photographes ayant ce meme tag
       tag.addEventListener("click", (e) => {
         let tagEvent = e.target;
-        //console.log(tagEvent);
+        console.log(tagEvent);
         new SortingTags(tagEvent, filtersArray);
       });
 
@@ -93,6 +96,7 @@ setTimeout(() => {
         }
       });
     }
+    // Sinon sinl'url contient un parametre tag j'affiche les photographes ayant ce meme tag
   } else if (regTag.test(window.location.search)) {
     //console.log(regTag.test(window.location.search));
     let tagAriaLabel = window.location.search.replace(/\?tag=/i, "");

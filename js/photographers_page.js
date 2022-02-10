@@ -89,7 +89,7 @@ class CreatePhotographerPage {
     this.tagList = document.createElement("li");
     this.tagList.classList.add("tag_list");
 
-    // je cree les differents tags sur le profil photographe
+    // on crée les differents tags sur le profil photographe
     this.data.tags.forEach((tag) => {
       const tagsArray = [];
 
@@ -106,12 +106,11 @@ class CreatePhotographerPage {
       this.tagList.appendChild(this.tagAnchor);
 
       tagsArray.push(tag);
-      //console.log(tagsArray);
     });
   }
 
   createFooterPageSticker() {
-    //structure du sticker
+    //structure du sticker compteur de like et tarifs du photographe
     this.footer = document.querySelector("footer");
     this.stickerContainer = document.createElement("div");
     this.footerSticker = document.createElement("div");

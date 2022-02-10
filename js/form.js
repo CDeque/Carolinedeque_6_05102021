@@ -22,9 +22,9 @@ fetch("photographers.json")
 class Form {
   constructor(data) {
     this.data = data;
-    //console.log(this.data);
+
     this.contactBtn = document.querySelector(".contact_button");
-    //console.log(this.contactBtn);
+
     this.main = document.querySelector("main");
 
     this.createContactModal();
@@ -74,7 +74,6 @@ class Form {
     this.formHeader.classList.add("form_header");
     this.formTitle.classList.add("form_title");
     this.closeBtn.classList.add("close_btn");
-
     this.modalBody.classList.add("modal_body");
     this.form.classList.add("form");
     this.formDataName.classList.add("form_data");
@@ -180,9 +179,9 @@ class Form {
   // ouvre la modale lorsque l'on clique sur le bouton contactez-moi
   openModal() {
     this.contactBtn = document.querySelector(".contact_button");
-    //console.log(this.contactBtn);
+
     this.contactModal = document.querySelector(".contact_modal");
-    //console.log(this.contactModal);
+
     this.contactBtn.addEventListener("click", () => {
       this.contactModal.style.display = "block";
 
@@ -228,7 +227,7 @@ class Form {
     //---------------------------- Regex----------------------------//
     //--------------------------------------------------------------//
 
-    let strings = /^[a-zA-Z-]*$/;
+    let strings = /^[a-zA-Z-éêè]*$/;
     let checkMail =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -301,6 +300,7 @@ class Form {
         return true;
       }
     }
+    // boucle forEach pour vérifier si les données tapées sont valides
 
     inputs.forEach((input) => {
       input.addEventListener("input", (e) => {
@@ -337,7 +337,7 @@ class Form {
       } else if (validationMessage() === false) {
         return false;
       } else {
-        // affichage dans la console
+        // affichage dans la console des données validées dans le formulaire de contact
         console.log(
           "Nom:",
           form.elements["last"].value,

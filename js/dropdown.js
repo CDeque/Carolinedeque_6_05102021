@@ -86,10 +86,9 @@ export default class Dropdown {
     const mediaGallery = Array.from(
       document.querySelectorAll(".gallery_container")
     );
-    //console.log(mediaGallery);
+
     let sortedMedias = "";
     this.sectionMedia = document.querySelector(".container");
-    //console.log(this.sectionMedia);
 
     let options = [this.optionPopularity, this.optionDate, this.optionTitle];
 
@@ -125,6 +124,8 @@ export default class Dropdown {
             );
 
             break;
+
+          //En fonction de la date
           case "date":
             this.sectionMedia = "";
             sortedMedias = mediaGallery.sort((a, b) =>
@@ -134,6 +135,9 @@ export default class Dropdown {
             );
 
             break;
+
+          // En fonction du titre
+
           case "titre":
             this.sectionMedia = "";
             sortedMedias = mediaGallery.sort((a, b) =>
@@ -143,6 +147,7 @@ export default class Dropdown {
             );
 
             break;
+
           default:
             break;
         }
@@ -153,7 +158,7 @@ export default class Dropdown {
 
       option.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
-          //condition pour afficher le choix lorsque sur l'on appuie sur Enter sur fois l'option selectionne au tab
+          //condition pour afficher le choix lorsque sur l'on appuie sur Enter une fois l'option selectionnée au tab
           if (option.id === "popularité") {
             this.ul.style.display = "none";
             this.dropdownBtn.innerHTML = option.innerHTML;
@@ -169,6 +174,7 @@ export default class Dropdown {
           }
 
           //switch pour trier les medias
+
           switch (e.target.id) {
             // En fonction de la popularité
 
@@ -179,8 +185,10 @@ export default class Dropdown {
                   b.children[1].children[1].children[0].innerHTML -
                   a.children[1].children[1].children[0].innerHTML
               );
-
               break;
+
+            // En fonction de la date
+
             case "date":
               this.sectionMedia = "";
               sortedMedias = mediaGallery.sort((a, b) =>
@@ -188,8 +196,10 @@ export default class Dropdown {
                   .getAttribute("date")
                   .localeCompare(a.children[0].children[0].getAttribute("date"))
               );
-
               break;
+
+            //En fonction du titre
+
             case "titre":
               this.sectionMedia = "";
               sortedMedias = mediaGallery.sort((a, b) =>
@@ -199,6 +209,7 @@ export default class Dropdown {
               );
 
               break;
+
             default:
               break;
           }
@@ -207,13 +218,15 @@ export default class Dropdown {
       });
     });
   }
+
+  // Pour afficher les medias en fonction de la popularité au chargement de la page
+
   sortMediaOnLoad() {
     const mediaGallery = Array.from(
       document.querySelectorAll(".gallery_container")
     );
     let sortedMedias = "";
     this.sectionMedia = document.querySelector(".container");
-    //console.log(this.sectionMedia);
 
     // tri des medias pour l'option populaire au chargement de la page
     if (this.dropdownBtn.id === "popularité") {
@@ -226,10 +239,9 @@ export default class Dropdown {
       this.displayMedia(sortedMedias);
     }
   }
+  // Pour ré-injecter les media dans la gallerie enfonction du tri
 
   displayMedia(sortedMedias) {
-    // on ré-injecte les medias dans la section
-
     sortedMedias.forEach((element) => {
       document.querySelector(".container").appendChild(element);
     });

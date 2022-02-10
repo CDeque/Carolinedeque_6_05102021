@@ -1,5 +1,5 @@
 //------------------------------------------------------------------
-// scroll
+// Ajout du scroll sur la page d'accueil
 
 function pageContent() {
   const nav = document.querySelector("nav");
@@ -13,19 +13,22 @@ function pageContent() {
   nav.appendChild(linkContent);
   linkContent.appendChild(pageContentContainer);
 
+  //------------------------------------------------------------------------------//
+  // passer au contenu s'affiche lorsque l'on fait defiler la page à partir de 50px
+
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
       document.getElementById("content").style.display = "block";
     } else {
       document.getElementById("content").style.display = "none";
     }
-    //console.log("scrolled");
   });
 }
 pageContent();
 
 //-----------------------------------------------------------------
-//ajout tags-nav - Header
+//ajout des tags de  navigation sur la page d'accueil
+
 function createHeaderNav() {
   const nav = document.querySelector("nav");
   const navContainer = document.createElement("ul");

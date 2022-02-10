@@ -9,7 +9,6 @@ fetch("photographers.json")
   .then((data) => {
     const photographers = data.photographers;
     photographers.forEach((photographer) => {
-      //console.log(photographer);
       new CreatePhotographerCard(photographer);
     });
   })
@@ -20,7 +19,7 @@ fetch("photographers.json")
 class CreatePhotographerCard {
   constructor(data) {
     this.data = data;
-    //console.log(this.data);
+
     this.main = document.querySelector("main");
 
     this.createCard();
@@ -80,7 +79,7 @@ class CreatePhotographerCard {
     this.tagAnchor = document.createElement("a");
     this.tagAnchor.classList.add("tag_anchor");
     this.tagAnchor.href = "#";
-
+    // creation d'une boucle pour générer les tags
     this.data.tags.forEach((tag) => {
       const tagsArray = [];
 
@@ -96,8 +95,9 @@ class CreatePhotographerCard {
       //console.log(tagsArray);
     });
   }
+
   keyboardNav() {
-    //ajout de la navigation clavier
+    //ajout de la navigation clavier  pour atteindre la page de chaque photographes lorsque l'on presse Enter
 
     this.article.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {

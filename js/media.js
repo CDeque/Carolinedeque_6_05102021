@@ -17,6 +17,7 @@ fetch("photographers.json")
         medias.push(new CreatePhotographerMedia(media));
       }
     });
+
     new Dropdown();
   })
   .catch((err) => {
@@ -75,7 +76,7 @@ class CreatePhotographerMedia {
     this.heartIcon.src = "medias/icones/heart_icon.png";
   }
 
-  // Création de la gallerie photo
+  // Création de la gallerie photo/vidéo
   createPhotoGallery() {
     //utilisation  de la methode in pour aller récupérer les images et la vidéo dans le JSON
 
