@@ -219,8 +219,6 @@ class Form {
   validateForm() {
     const form = document.querySelector("form");
 
-    console.log(form.querySelectorAll["input"]);
-
     const inputs = document.querySelectorAll("input");
 
     //--------------------------------------------------------------//
