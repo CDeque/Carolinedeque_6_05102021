@@ -202,6 +202,8 @@ class Form {
       document.querySelector(".sort_menu").style.display = "flex";
     });
 
+    // Navigation  Clavier pour fermer le formulaire de contact
+
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         this.contactModal.style.display = "none";

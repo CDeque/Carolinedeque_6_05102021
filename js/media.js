@@ -79,6 +79,7 @@ class CreatePhotographerMedia {
   // Création de la gallerie photo/vidéo
   createPhotoGallery() {
     //utilisation  de la methode in pour aller récupérer les images et la vidéo dans le JSON
+    //création de la galerie
 
     if ("image" in this.data) {
       this.image = document.createElement("img");

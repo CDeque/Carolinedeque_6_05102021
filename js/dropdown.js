@@ -94,7 +94,7 @@ export default class Dropdown {
 
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
         //condition pour afficher le choix
         if (option.id === "popularité") {
@@ -239,7 +239,7 @@ export default class Dropdown {
       this.displayMedia(sortedMedias);
     }
   }
-  // Pour ré-injecter les media dans la gallerie enfonction du tri
+  // Pour ré-injecter les medias dans la gallerie enfonction du tri
 
   displayMedia(sortedMedias) {
     sortedMedias.forEach((element) => {

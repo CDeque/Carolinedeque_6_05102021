@@ -115,7 +115,7 @@ export default class Lightbox {
   }
 
   //-----------------------------------------------------------------------------------------------//
-  //On verifie s'il s'agit d'une image ou d'une vidéo avant de la générer le média dans la lightbox
+  //On verifie s'il s'agit d'une image ou d'une vidéo avant de générer le média dans la lightbox
   loadMedia(medSrc) {
     // on verifie s'il s'agit d'une photo
     if (medSrc.src.includes(".jpg")) {
@@ -177,7 +177,7 @@ export default class Lightbox {
         ].parentNode.nextSibling.children[0].children[0].innerHTML;
     });
     //------------------------------navigation Clavier------------------------------
-    //lorsque l'on appuie sur la fleche de droite on passe au media suivants
+    //lorsque l'on appuie sur la fleche de droite on passe au media suivant
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
         e.preventDefault();
@@ -205,7 +205,7 @@ export default class Lightbox {
 
     let count = 0;
     const previous = document.querySelector(".previous");
-    // Au clic sur le bouton previous on enleve 1 pour passer à la photo et le titre précédents
+    // Au clic sur le bouton previous on enleve 1 pour passer à la photo et le titre précédent
     previous.addEventListener("click", (e) => {
       e.preventDefault();
 
@@ -223,7 +223,7 @@ export default class Lightbox {
     });
 
     //------------------------------navigation Clavier------------------------------
-    //lorsque l'on appuie sur la fleche de gauche on passe au media prédédents
+    //lorsque l'on appuie sur la fleche de gauche on passe au media prédédent
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowLeft") {
         e.preventDefault();
