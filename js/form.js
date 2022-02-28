@@ -207,6 +207,7 @@ class Form {
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         this.contactModal.style.display = "none";
+        this.contactBtn.focus();
 
         // on affiche le dropdown
         document.querySelector(".sort_menu").style.display = "flex";
