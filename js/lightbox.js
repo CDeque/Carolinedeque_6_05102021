@@ -83,7 +83,7 @@ export default class Lightbox {
         e.preventDefault();
 
         loadLightbox.style.display = "flex"; //rend active la lightbox
-
+        loadLightbox.focus(); // ajoute le focus sur la lightbox
         // cache le sticker et le dropdown lorsque que la lightbox est ouverte
         document.querySelector(".sort_menu").style.display = "none";
         document.querySelector(".footer_sticker").style.display = "none";
